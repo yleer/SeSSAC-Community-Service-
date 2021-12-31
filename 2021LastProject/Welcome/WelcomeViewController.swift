@@ -15,6 +15,7 @@ class WelcomeViewContoller: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = mainView
+        
     }
     
     override func viewDidLoad() {
@@ -31,7 +32,8 @@ class WelcomeViewContoller: UIViewController {
     }
     
     @objc func loginButtonClicked() {
-        print("big")
+        let vc = LoginViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

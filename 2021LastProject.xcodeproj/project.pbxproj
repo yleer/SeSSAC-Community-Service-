@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		887CD4FC277EA84800709682 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FB277EA84800709682 /* User.swift */; };
-		887CD4FE277EA89800709682 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FD277EA89800709682 /* Board.swift */; };
+		887CD4FC277EA84800709682 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FB277EA84800709682 /* UserData.swift */; };
+		887CD4FE277EA89800709682 /* BoardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FD277EA89800709682 /* BoardData.swift */; };
 		887CD500277EAA5600709682 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FF277EAA5600709682 /* ApiService.swift */; };
+		887CD502277EE15D00709682 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD501277EE15D00709682 /* LoginViewController.swift */; };
+		887CD505277EE17A00709682 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD504277EE17A00709682 /* LoginViewModel.swift */; };
+		887CD507277EE18600709682 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD506277EE18600709682 /* LoginView.swift */; };
+		887CD509277EE52B00709682 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD508277EE52B00709682 /* Observable.swift */; };
+		887CD50B277F24D700709682 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD50A277F24D700709682 /* BoardViewController.swift */; };
+		887CD50F277F251C00709682 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD50E277F251C00709682 /* BoardView.swift */; };
+		887CD511277F252200709682 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD510277F252200709682 /* BoardViewModel.swift */; };
+		887CD513277F2A0F00709682 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD512277F2A0F00709682 /* BoardCell.swift */; };
+		887CD515277F375600709682 /* AddPosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD514277F375600709682 /* AddPosterViewController.swift */; };
+		887CD518277F376600709682 /* AddPosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD517277F376600709682 /* AddPosterView.swift */; };
+		887CD51A277F377200709682 /* AddPosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD519277F377200709682 /* AddPosterViewModel.swift */; };
 		88A36C59277DE7BB00DB6DC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */; };
 		88A36C5B277DE7BB00DB6DC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */; };
-		88A36C5D277DE7BB00DB6DC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C5C277DE7BB00DB6DC4 /* ViewController.swift */; };
 		88A36C62277DE7BF00DB6DC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A36C61277DE7BF00DB6DC4 /* Assets.xcassets */; };
 		88A36C65277DE7BF00DB6DC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A36C63277DE7BF00DB6DC4 /* LaunchScreen.storyboard */; };
 		88A36C6D277DE81A00DB6DC4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C6C277DE81A00DB6DC4 /* WelcomeViewController.swift */; };
@@ -21,17 +31,27 @@
 		88A36C75277DE85700DB6DC4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88A36C74277DE85700DB6DC4 /* SnapKit */; };
 		88A36C77277DEB6F00DB6DC4 /* RigisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */; };
 		88A36C79277DEB8400DB6DC4 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C78277DEB8400DB6DC4 /* RegisterView.swift */; };
-		88A36C7B277DEB8D00DB6DC4 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C7A277DEB8D00DB6DC4 /* RegisterModel.swift */; };
+		88A36C7B277DEB8D00DB6DC4 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C7A277DEB8D00DB6DC4 /* RegisterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		887CD4FB277EA84800709682 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		887CD4FD277EA89800709682 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		887CD4FB277EA84800709682 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		887CD4FD277EA89800709682 /* BoardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
 		887CD4FF277EAA5600709682 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		887CD501277EE15D00709682 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		887CD504277EE17A00709682 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		887CD506277EE18600709682 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		887CD508277EE52B00709682 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		887CD50A277F24D700709682 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
+		887CD50E277F251C00709682 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		887CD510277F252200709682 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
+		887CD512277F2A0F00709682 /* BoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
+		887CD514277F375600709682 /* AddPosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPosterViewController.swift; sourceTree = "<group>"; };
+		887CD517277F376600709682 /* AddPosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPosterView.swift; sourceTree = "<group>"; };
+		887CD519277F377200709682 /* AddPosterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPosterViewModel.swift; sourceTree = "<group>"; };
 		88A36C55277DE7BB00DB6DC4 /* 2021LastProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2021LastProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		88A36C5C277DE7BB00DB6DC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		88A36C61277DE7BF00DB6DC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88A36C64277DE7BF00DB6DC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88A36C66277DE7BF00DB6DC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,7 +60,7 @@
 		88A36C70277DE82E00DB6DC4 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RigisterViewController.swift; sourceTree = "<group>"; };
 		88A36C78277DEB8400DB6DC4 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		88A36C7A277DEB8D00DB6DC4 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		88A36C7A277DEB8D00DB6DC4 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +75,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		887CD503277EE17000709682 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				887CD501277EE15D00709682 /* LoginViewController.swift */,
+				887CD504277EE17A00709682 /* LoginViewModel.swift */,
+				887CD506277EE18600709682 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		887CD50C277F24F200709682 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				887CD50A277F24D700709682 /* BoardViewController.swift */,
+				887CD50E277F251C00709682 /* BoardView.swift */,
+				887CD510277F252200709682 /* BoardViewModel.swift */,
+				887CD512277F2A0F00709682 /* BoardCell.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
+		887CD50D277F250B00709682 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				887CD4FB277EA84800709682 /* UserData.swift */,
+				887CD4FD277EA89800709682 /* BoardData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		887CD516277F375A00709682 /* AddPoster */ = {
+			isa = PBXGroup;
+			children = (
+				887CD514277F375600709682 /* AddPosterViewController.swift */,
+				887CD517277F376600709682 /* AddPosterView.swift */,
+				887CD519277F377200709682 /* AddPosterViewModel.swift */,
+			);
+			path = AddPoster;
+			sourceTree = "<group>";
+		};
 		88A36C4C277DE7BB00DB6DC4 = {
 			isa = PBXGroup;
 			children = (
@@ -76,15 +136,17 @@
 			children = (
 				88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */,
 				88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */,
-				88A36C5C277DE7BB00DB6DC4 /* ViewController.swift */,
 				88A36C61277DE7BF00DB6DC4 /* Assets.xcassets */,
 				88A36C63277DE7BF00DB6DC4 /* LaunchScreen.storyboard */,
 				88A36C66277DE7BF00DB6DC4 /* Info.plist */,
 				88A36C72277DE83200DB6DC4 /* Welcome */,
-				88A36C7C277DEB9600DB6DC4 /* Login */,
-				887CD4FB277EA84800709682 /* User.swift */,
-				887CD4FD277EA89800709682 /* Board.swift */,
+				88A36C7C277DEB9600DB6DC4 /* Register */,
+				887CD50D277F250B00709682 /* Data */,
 				887CD4FF277EAA5600709682 /* ApiService.swift */,
+				887CD503277EE17000709682 /* Login */,
+				887CD508277EE52B00709682 /* Observable.swift */,
+				887CD50C277F24F200709682 /* Board */,
+				887CD516277F375A00709682 /* AddPoster */,
 			);
 			path = 2021LastProject;
 			sourceTree = "<group>";
@@ -99,14 +161,14 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
-		88A36C7C277DEB9600DB6DC4 /* Login */ = {
+		88A36C7C277DEB9600DB6DC4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */,
-				88A36C7A277DEB8D00DB6DC4 /* RegisterModel.swift */,
+				88A36C7A277DEB8D00DB6DC4 /* RegisterViewModel.swift */,
 				88A36C78277DEB8400DB6DC4 /* RegisterView.swift */,
 			);
-			path = Login;
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,17 +247,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887CD513277F2A0F00709682 /* BoardCell.swift in Sources */,
 				88A36C77277DEB6F00DB6DC4 /* RigisterViewController.swift in Sources */,
+				887CD509277EE52B00709682 /* Observable.swift in Sources */,
 				88A36C6F277DE82600DB6DC4 /* WelcomeView.swift in Sources */,
 				887CD500277EAA5600709682 /* ApiService.swift in Sources */,
+				887CD518277F376600709682 /* AddPosterView.swift in Sources */,
+				887CD507277EE18600709682 /* LoginView.swift in Sources */,
+				887CD511277F252200709682 /* BoardViewModel.swift in Sources */,
 				88A36C71277DE82E00DB6DC4 /* WelcomeViewModel.swift in Sources */,
-				88A36C5D277DE7BB00DB6DC4 /* ViewController.swift in Sources */,
-				887CD4FE277EA89800709682 /* Board.swift in Sources */,
-				88A36C7B277DEB8D00DB6DC4 /* RegisterModel.swift in Sources */,
+				887CD4FE277EA89800709682 /* BoardData.swift in Sources */,
+				887CD515277F375600709682 /* AddPosterViewController.swift in Sources */,
+				887CD51A277F377200709682 /* AddPosterViewModel.swift in Sources */,
+				887CD505277EE17A00709682 /* LoginViewModel.swift in Sources */,
+				88A36C7B277DEB8D00DB6DC4 /* RegisterViewModel.swift in Sources */,
 				88A36C6D277DE81A00DB6DC4 /* WelcomeViewController.swift in Sources */,
 				88A36C59277DE7BB00DB6DC4 /* AppDelegate.swift in Sources */,
+				887CD50B277F24D700709682 /* BoardViewController.swift in Sources */,
 				88A36C79277DEB8400DB6DC4 /* RegisterView.swift in Sources */,
-				887CD4FC277EA84800709682 /* User.swift in Sources */,
+				887CD50F277F251C00709682 /* BoardView.swift in Sources */,
+				887CD4FC277EA84800709682 /* UserData.swift in Sources */,
+				887CD502277EE15D00709682 /* LoginViewController.swift in Sources */,
 				88A36C5B277DE7BB00DB6DC4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
