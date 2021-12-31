@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class RigisterViewController: UIViewController {
     
-    let mainView = LoginView()
+    let mainView = RegisterView()
     
     override func loadView() {
         super.loadView()
@@ -18,6 +18,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "새싹농장 가입하기"
+        
+        ApiService.register(username: "asdfasdf", password: "123123asdf", email: "asdfadsf@gasd.com")
     }
     
 }

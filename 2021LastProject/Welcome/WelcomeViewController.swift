@@ -19,6 +19,19 @@ class WelcomeViewContoller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainView.startButton.addTarget(self, action: #selector(startButtonClicked), for: .touchUpInside)
+        mainView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
+    }
+    
+    
+    @objc func startButtonClicked() {
+        let vc = RigisterViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func loginButtonClicked() {
+        print("big")
     }
     
     

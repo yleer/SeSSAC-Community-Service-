@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class LoginView: UIView, ViewRepresentable{
+class RegisterView: UIView, ViewRepresentable{
 
     
     let stack = UIStackView()

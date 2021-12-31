@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		887CD4FC277EA84800709682 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FB277EA84800709682 /* User.swift */; };
+		887CD4FE277EA89800709682 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FD277EA89800709682 /* Board.swift */; };
+		887CD500277EAA5600709682 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FF277EAA5600709682 /* ApiService.swift */; };
 		88A36C59277DE7BB00DB6DC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */; };
 		88A36C5B277DE7BB00DB6DC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */; };
 		88A36C5D277DE7BB00DB6DC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C5C277DE7BB00DB6DC4 /* ViewController.swift */; };
@@ -16,12 +19,15 @@
 		88A36C6F277DE82600DB6DC4 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C6E277DE82600DB6DC4 /* WelcomeView.swift */; };
 		88A36C71277DE82E00DB6DC4 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C70277DE82E00DB6DC4 /* WelcomeViewModel.swift */; };
 		88A36C75277DE85700DB6DC4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88A36C74277DE85700DB6DC4 /* SnapKit */; };
-		88A36C77277DEB6F00DB6DC4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C76277DEB6F00DB6DC4 /* LoginViewController.swift */; };
-		88A36C79277DEB8400DB6DC4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C78277DEB8400DB6DC4 /* LoginView.swift */; };
-		88A36C7B277DEB8D00DB6DC4 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C7A277DEB8D00DB6DC4 /* LoginModel.swift */; };
+		88A36C77277DEB6F00DB6DC4 /* RigisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */; };
+		88A36C79277DEB8400DB6DC4 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C78277DEB8400DB6DC4 /* RegisterView.swift */; };
+		88A36C7B277DEB8D00DB6DC4 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C7A277DEB8D00DB6DC4 /* RegisterModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		887CD4FB277EA84800709682 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		887CD4FD277EA89800709682 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		887CD4FF277EAA5600709682 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		88A36C55277DE7BB00DB6DC4 /* 2021LastProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2021LastProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,9 +38,9 @@
 		88A36C6C277DE81A00DB6DC4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		88A36C6E277DE82600DB6DC4 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		88A36C70277DE82E00DB6DC4 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
-		88A36C76277DEB6F00DB6DC4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		88A36C78277DEB8400DB6DC4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		88A36C7A277DEB8D00DB6DC4 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RigisterViewController.swift; sourceTree = "<group>"; };
+		88A36C78277DEB8400DB6DC4 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		88A36C7A277DEB8D00DB6DC4 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,9 @@
 				88A36C66277DE7BF00DB6DC4 /* Info.plist */,
 				88A36C72277DE83200DB6DC4 /* Welcome */,
 				88A36C7C277DEB9600DB6DC4 /* Login */,
+				887CD4FB277EA84800709682 /* User.swift */,
+				887CD4FD277EA89800709682 /* Board.swift */,
+				887CD4FF277EAA5600709682 /* ApiService.swift */,
 			);
 			path = 2021LastProject;
 			sourceTree = "<group>";
@@ -93,9 +102,9 @@
 		88A36C7C277DEB9600DB6DC4 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				88A36C76277DEB6F00DB6DC4 /* LoginViewController.swift */,
-				88A36C78277DEB8400DB6DC4 /* LoginView.swift */,
-				88A36C7A277DEB8D00DB6DC4 /* LoginModel.swift */,
+				88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */,
+				88A36C7A277DEB8D00DB6DC4 /* RegisterModel.swift */,
+				88A36C78277DEB8400DB6DC4 /* RegisterView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -176,14 +185,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88A36C77277DEB6F00DB6DC4 /* LoginViewController.swift in Sources */,
+				88A36C77277DEB6F00DB6DC4 /* RigisterViewController.swift in Sources */,
 				88A36C6F277DE82600DB6DC4 /* WelcomeView.swift in Sources */,
+				887CD500277EAA5600709682 /* ApiService.swift in Sources */,
 				88A36C71277DE82E00DB6DC4 /* WelcomeViewModel.swift in Sources */,
 				88A36C5D277DE7BB00DB6DC4 /* ViewController.swift in Sources */,
-				88A36C7B277DEB8D00DB6DC4 /* LoginModel.swift in Sources */,
+				887CD4FE277EA89800709682 /* Board.swift in Sources */,
+				88A36C7B277DEB8D00DB6DC4 /* RegisterModel.swift in Sources */,
 				88A36C6D277DE81A00DB6DC4 /* WelcomeViewController.swift in Sources */,
 				88A36C59277DE7BB00DB6DC4 /* AppDelegate.swift in Sources */,
-				88A36C79277DEB8400DB6DC4 /* LoginView.swift in Sources */,
+				88A36C79277DEB8400DB6DC4 /* RegisterView.swift in Sources */,
+				887CD4FC277EA84800709682 /* User.swift in Sources */,
 				88A36C5B277DE7BB00DB6DC4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
