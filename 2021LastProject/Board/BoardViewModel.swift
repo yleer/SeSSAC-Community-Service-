@@ -44,4 +44,8 @@ class BoardViewModel {
         return cell
     }
     
+    func didSelectRowAt(didSelectRowAt indexPath: IndexPath) -> PosterElement {
+        return posters[indexPath.row]
+    }
+        
 }

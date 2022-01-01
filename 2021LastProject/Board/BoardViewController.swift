@@ -32,6 +32,16 @@ class BoardViewController: UIViewController {
                 self.mainView.tableView.reloadData()
             }
         }
+        
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
+    }
+    
+    @objc func refreshData(){
+        viewModel.getPoster {
+            DispatchQueue.main.async {
+                self.mainView.tableView.reloadData()
+            }
+        }
     }
     
     
@@ -48,18 +58,18 @@ extension BoardViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BoardCell", for: indexPath) as? BoardCell else { return UITableViewCell() }
-//
-//        cell.writer.text = "asdf"
-//        cell.content.text = "zzz"
-//        cell.date.text = "fasd"
-//        cell.commentLabel.text = "댓글 4"
-//        return cell
         viewModel.cellForRowAt(tableView, cellForRowAt: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let poster = viewModel.didSelectRowAt(didSelectRowAt: indexPath)
+        var vc = DetailPostViewController()
+        vc.poster = poster
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

@@ -32,6 +32,12 @@
 		88A36C77277DEB6F00DB6DC4 /* RigisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */; };
 		88A36C79277DEB8400DB6DC4 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C78277DEB8400DB6DC4 /* RegisterView.swift */; };
 		88A36C7B277DEB8D00DB6DC4 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C7A277DEB8D00DB6DC4 /* RegisterViewModel.swift */; };
+		88DFD874277FF8170080753C /* SendPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD873277FF8170080753C /* SendPost.swift */; };
+		88DFD876277FFEE00080753C /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD875277FFEE00080753C /* DetailPostViewController.swift */; };
+		88DFD879277FFF080080753C /* DetailPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD878277FFF080080753C /* DetailPostViewModel.swift */; };
+		88DFD87B277FFF0E0080753C /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD87A277FFF0E0080753C /* DetailPostView.swift */; };
+		88DFD87D277FFFC20080753C /* DetailPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD87C277FFFC20080753C /* DetailPostTableViewCell.swift */; };
+		88DFD87F277FFFF90080753C /* DetailCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD87E277FFFF90080753C /* DetailCommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +67,12 @@
 		88A36C76277DEB6F00DB6DC4 /* RigisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RigisterViewController.swift; sourceTree = "<group>"; };
 		88A36C78277DEB8400DB6DC4 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		88A36C7A277DEB8D00DB6DC4 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		88DFD873277FF8170080753C /* SendPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPost.swift; sourceTree = "<group>"; };
+		88DFD875277FFEE00080753C /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
+		88DFD878277FFF080080753C /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
+		88DFD87A277FFF0E0080753C /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
+		88DFD87C277FFFC20080753C /* DetailPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostTableViewCell.swift; sourceTree = "<group>"; };
+		88DFD87E277FFFF90080753C /* DetailCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +113,7 @@
 			children = (
 				887CD4FB277EA84800709682 /* UserData.swift */,
 				887CD4FD277EA89800709682 /* BoardData.swift */,
+				88DFD873277FF8170080753C /* SendPost.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -147,6 +160,7 @@
 				887CD508277EE52B00709682 /* Observable.swift */,
 				887CD50C277F24F200709682 /* Board */,
 				887CD516277F375A00709682 /* AddPoster */,
+				88DFD877277FFEF80080753C /* DetailPostView */,
 			);
 			path = 2021LastProject;
 			sourceTree = "<group>";
@@ -169,6 +183,18 @@
 				88A36C78277DEB8400DB6DC4 /* RegisterView.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		88DFD877277FFEF80080753C /* DetailPostView */ = {
+			isa = PBXGroup;
+			children = (
+				88DFD875277FFEE00080753C /* DetailPostViewController.swift */,
+				88DFD878277FFF080080753C /* DetailPostViewModel.swift */,
+				88DFD87A277FFF0E0080753C /* DetailPostView.swift */,
+				88DFD87C277FFFC20080753C /* DetailPostTableViewCell.swift */,
+				88DFD87E277FFFF90080753C /* DetailCommentTableViewCell.swift */,
+			);
+			path = DetailPostView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,23 +278,29 @@
 				887CD509277EE52B00709682 /* Observable.swift in Sources */,
 				88A36C6F277DE82600DB6DC4 /* WelcomeView.swift in Sources */,
 				887CD500277EAA5600709682 /* ApiService.swift in Sources */,
+				88DFD87B277FFF0E0080753C /* DetailPostView.swift in Sources */,
 				887CD518277F376600709682 /* AddPosterView.swift in Sources */,
 				887CD507277EE18600709682 /* LoginView.swift in Sources */,
+				88DFD87D277FFFC20080753C /* DetailPostTableViewCell.swift in Sources */,
 				887CD511277F252200709682 /* BoardViewModel.swift in Sources */,
 				88A36C71277DE82E00DB6DC4 /* WelcomeViewModel.swift in Sources */,
 				887CD4FE277EA89800709682 /* BoardData.swift in Sources */,
+				88DFD87F277FFFF90080753C /* DetailCommentTableViewCell.swift in Sources */,
 				887CD515277F375600709682 /* AddPosterViewController.swift in Sources */,
 				887CD51A277F377200709682 /* AddPosterViewModel.swift in Sources */,
 				887CD505277EE17A00709682 /* LoginViewModel.swift in Sources */,
 				88A36C7B277DEB8D00DB6DC4 /* RegisterViewModel.swift in Sources */,
 				88A36C6D277DE81A00DB6DC4 /* WelcomeViewController.swift in Sources */,
 				88A36C59277DE7BB00DB6DC4 /* AppDelegate.swift in Sources */,
+				88DFD874277FF8170080753C /* SendPost.swift in Sources */,
+				88DFD876277FFEE00080753C /* DetailPostViewController.swift in Sources */,
 				887CD50B277F24D700709682 /* BoardViewController.swift in Sources */,
 				88A36C79277DEB8400DB6DC4 /* RegisterView.swift in Sources */,
 				887CD50F277F251C00709682 /* BoardView.swift in Sources */,
 				887CD4FC277EA84800709682 /* UserData.swift in Sources */,
 				887CD502277EE15D00709682 /* LoginViewController.swift in Sources */,
 				88A36C5B277DE7BB00DB6DC4 /* SceneDelegate.swift in Sources */,
+				88DFD879277FFF080080753C /* DetailPostViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

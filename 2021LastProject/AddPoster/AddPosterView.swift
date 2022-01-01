@@ -7,8 +7,11 @@
 
 
 import UIKit
+import SnapKit
 
 class AddPosterView: UIView, ViewRepresentable{
+    
+    let textView = UITextView()
  
     
     override init(frame: CGRect) {
@@ -23,11 +26,18 @@ class AddPosterView: UIView, ViewRepresentable{
     }
     
     func setUpView() {
-        backgroundColor = .red
+        backgroundColor = .white
+        addSubview(textView)
     }
     
     func setUpConstraints() {
         
+        textView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalTo(safeAreaLayoutGuide)
+            make.leading.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(safeAreaLayoutGuide)
+        }
     }
     
 }

@@ -144,4 +144,74 @@ class ApiService {
             }
         }.resume()
     }
+    
+    static func post(token: String, text: String, completion: @escaping (APIError?) -> Void) {
+        let url = URL(string: "http://test.monocoding.com:1231/posts")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
+        request.httpBody = "text=\(text)".data(using: .utf8,allowLossyConversion: false)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                completion(.invalidData)
+                print(error)
+                return
+            }
+            
+            guard let _ = data else {
+                completion(.noData)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failed)
+                return
+            }
+            
+            guard response.statusCode == 200 else {
+                print("status code error")
+                completion(.invalidData)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    static func writeComment(token: String, comment: String, postId: Int, completion: @escaping (APIError?) -> Void) {
+        let url = URL(string: "http://test.monocoding.com:1231/comments")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
+        request.httpBody = "comment=\(comment)&post=\(postId)".data(using: .utf8,allowLossyConversion: false)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                completion(.invalidData)
+                print(error)
+                return
+            }
+            
+            guard let _ = data else {
+                completion(.noData)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failed)
+                return
+            }
+            
+            guard response.statusCode == 200 else {
+                print("status code error")
+                completion(.invalidData)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
 }
