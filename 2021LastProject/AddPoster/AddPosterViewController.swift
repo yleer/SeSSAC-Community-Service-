@@ -13,6 +13,8 @@ class AddPosterViewController: UIViewController {
     
     let mainView = AddPosterView()
     let viewModel = AddPosterViewModel()
+    var previousText: String?
+    var id : Int?
     
     override func loadView() {
         super.loadView()
@@ -29,14 +31,30 @@ class AddPosterViewController: UIViewController {
             self.mainView.textView.text = text
         }
         
-
+        if let previousText = previousText{
+            title = "수정"
+            mainView.textView.text = previousText
+        }
     }
     
     @objc func saveButtonClicked (_ button: UIButton) {
-        if let text = mainView.textView.text {
-            viewModel.posterText.value = text
-            viewModel.addPost()
+        
+        if previousText == nil {
+            if let text = mainView.textView.text {
+                viewModel.posterText.value = text
+                viewModel.addPost()
+            }
+        }else{
+//            if let text = mainView.textView.text {
+//
+//            }
+            
+            print("editing")
+            viewModel.posterText.value = mainView.textView.text
+            viewModel.editPost(postId: id!)
         }
+        
+        
     }
 }
 

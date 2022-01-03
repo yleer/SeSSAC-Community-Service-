@@ -117,8 +117,6 @@ class DetailCommentTableViewCell: UITableViewCell, ViewRepresentable {
             make.trailing.equalToSuperview().offset(-8)
             make.height.equalTo(1)
         }
-        
-        
     }
 }
 

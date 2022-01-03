@@ -20,10 +20,22 @@ class DetailPostViewModel {
                     return
                 }
                 print("comment created")
-                
             }
         }
-        
+    }
+    
+    func deletePost(id: Int, completion: @escaping () -> Void){
+        if let token = UserDefaults.standard.string(forKey: "token") {
+            ApiService.deletePost(token: token, postId: id) { error in
+                if let error = error {
+                    print("comment not created", error)
+                    return
+                }
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }
     }
     
     func numberOfRowsInSection( numberOfRowsInSection section: Int) -> Int {
@@ -48,8 +60,13 @@ class DetailPostViewModel {
             
             cell.comment.text = poster.comments[indexPath.row].comment
             cell.nickName.text = "\(poster.comments[indexPath.row].user)"
+         
             return cell
         }
     }
     
+    
+    
+    
+
 }

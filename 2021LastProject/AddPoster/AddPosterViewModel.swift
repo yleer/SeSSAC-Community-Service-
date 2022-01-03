@@ -21,6 +21,18 @@ class AddPosterViewModel {
                 print("add succed")
             }
         }
+    }
+    
+    func editPost(postId: Int) {
+        if let token = UserDefaults.standard.string(forKey: "token") {
         
+            ApiService.editPost(token: token, postId: postId, text: posterText.value) { error in
+                if let error = error {
+                    print("error occured while posting", error)
+                    return
+                }
+                print("add succed")
+            }
+        }
     }
 }
