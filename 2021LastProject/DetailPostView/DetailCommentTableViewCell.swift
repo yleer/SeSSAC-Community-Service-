@@ -63,7 +63,7 @@ class DetailCommentTableViewCell: UITableViewCell, ViewRepresentable {
     func setUpConstraints() {
         
         userImageView.snp.makeConstraints { make in
-            make.leading.equalTo(safeAreaLayoutGuide).offset(8)
+            make.leading.equalTo(safeAreaLayoutGuide).offset(15)
             make.top.equalTo(safeAreaLayoutGuide).offset(4)
             make.height.equalTo(50)
             make.width.equalTo(30)
@@ -93,12 +93,13 @@ class DetailCommentTableViewCell: UITableViewCell, ViewRepresentable {
         contentLabel.snp.makeConstraints { make in
             make.leading.equalTo(safeAreaLayoutGuide).offset(8)
             make.trailing.equalTo(safeAreaLayoutGuide).offset(-4)
-            make.top.equalTo(divider.snp.bottom).offset(12)
-            make.height.equalTo(150) // 나중에 auto로 바꿔야됨
+            make.top.equalTo(divider.snp.bottom).offset(20)
+//            make.height.equalTo(150) // 나중에 auto로 바꿔야됨
+//            make.bottom.equalTo()
         }
         
         contentBelowDivder.snp.makeConstraints { make in
-            make.top.equalTo(contentLabel.snp.bottom).offset(30)
+            make.top.equalTo(contentLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
             make.height.equalTo(1)
@@ -115,7 +116,7 @@ class DetailCommentTableViewCell: UITableViewCell, ViewRepresentable {
             make.top.equalTo(numberOfCommentLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
-            make.height.equalTo(1)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-8)
         }
     }
 }

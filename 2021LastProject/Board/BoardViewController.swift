@@ -70,15 +70,13 @@ extension BoardViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        180
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let poster = viewModel.didSelectRowAt(didSelectRowAt: indexPath)
-        var vc = DetailPostViewController()
+        let vc = DetailPostViewController()
         vc.poster = poster
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    
+    }    
 }

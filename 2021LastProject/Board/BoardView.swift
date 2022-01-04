@@ -23,6 +23,8 @@ class BoardView: UIView, ViewRepresentable {
         fatalError("init(coder:) has not been implemented")
     }
     
+ 
+    
     func setUpView() {
         backgroundColor = .white
         addSubview(tableView)

@@ -7,20 +7,24 @@
 
 import UIKit
 
-protocol CellDelegate: AnyObject {
-    func cellTaped(tag: Int)
-}
+
+
 
 class DetailPostTableViewCell: UITableViewCell, ViewRepresentable {
  
     let nickName = UILabel()
     let comment = UILabel()
     let button = UIButton()
-    var delegate: CellDelegate?
+    
+    var buttonAction : (() -> ())?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        button.addTarget(self, action: #selector(abc), for: .allEvents)
         setUpView()
         setUpConstraints()
+        button.isUserInteractionEnabled = true
+        
     }
     
     required init?(coder: NSCoder) {
@@ -28,8 +32,9 @@ class DetailPostTableViewCell: UITableViewCell, ViewRepresentable {
     }
     
     
-    @objc func a() {
+    @objc func abc() {
         print("asdf")
+        buttonAction?()
     }
     
     func setUpView() {
@@ -38,32 +43,34 @@ class DetailPostTableViewCell: UITableViewCell, ViewRepresentable {
         addSubview(button)
         button.setTitle("ASdf", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .white
-        button.addTarget(self, action: #selector(a), for: .touchUpInside)
+        button.backgroundColor = .gray
         comment.numberOfLines = 0
+        
     }
 
     func setUpConstraints() {
-//        nickName.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(8)
-//            make.leading.equalToSuperview().offset(8)
-//            make.trailing.equalToSuperview().offset(25)
-//            make.height.equalTo(30)
-//        }
-        
-        button.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.trailing.equalToSuperview().offset(-4)
-//            make.width.equalTo(40)
-            make.edges.equalToSuperview()
+        nickName.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(25)
+            make.height.equalTo(30)
         }
         
-//        comment.snp.makeConstraints { make in
-//            make.top.equalTo(nickName.snp.bottom).offset(4)
-//            make.leading.equalToSuperview().offset(8)
-//            make.trailing.equalToSuperview().offset(25)
-//            make.bottom.equalToSuperview().offset(-8)
-//        }
+        button.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-4)
+            make.width.equalTo(40)
+//            make.center.equalToSuperview()
+//            make.height.equalTo(100)
+//            make.width.equalTo(100)
+        }
+        
+        comment.snp.makeConstraints { make in
+            make.top.equalTo(nickName.snp.bottom).offset(4)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(25)
+            make.bottom.equalToSuperview().offset(-8)
+        }
     }
     
     

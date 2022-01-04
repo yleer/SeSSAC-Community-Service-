@@ -13,6 +13,7 @@ class DetailPostViewController: UIViewController {
     var poster: PosterElement!
     let mainView = DetailPostView()
     let viewModel = DetailPostViewModel()
+    var comments: Comments = []
     
     override func loadView() {
         super.loadView()
@@ -24,7 +25,6 @@ class DetailPostViewController: UIViewController {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         mainView.tableView.register(DetailCommentTableViewCell.self, forCellReuseIdentifier: "DetailCommentTableViewCell")
-        
         mainView.tableView.register(DetailPostTableViewCell.self, forCellReuseIdentifier: "DetailPostTableViewCell")
         
         viewModel.writtenComment.bind { text in
@@ -32,8 +32,15 @@ class DetailPostViewController: UIViewController {
         }
         
         mainView.commentTextField.addTarget(self, action: #selector(writeComment), for: .editingDidEndOnExit)
-        viewModel.poster = poster
         
+        viewModel.poster = poster
+        viewModel.viewComments(id: poster.id) {
+            self.comments = $0
+            DispatchQueue.main.async {
+                self.mainView.tableView.reloadData()
+            }
+        }
+        print("포스터 아이디: ", poster.id)
         navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPost))
     }
     
@@ -83,16 +90,10 @@ class DetailPostViewController: UIViewController {
         }
         
     }
+    var cells: [DetailPostTableViewCell] = []
 //    User2(id: 5, username: "hue", email: "hue@memolease.com", provider: "local", confirmed: true, blocked: Optional(false), role: 1, createdAt: "2021-12-30T10:00:34.057Z", updatedAt: "2021-12-30T10:00:34.073Z")
 }
 
-extension DetailPostViewController: CellDelegate{
-    func cellTaped(tag: Int) {
-        print("dfg")
-    }
-    
-    
-}
 
 
 extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
@@ -105,22 +106,45 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let tmp = viewModel.cellForRowAt(tableView, cellForRowAt: indexPath)
-        if let cell = tmp as? DetailPostTableViewCell {
-            print("gg")
-            cell.button.addTarget(self, action: #selector(commentEditButtonClicked), for: .touchUpInside)
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCommentTableViewCell", for: indexPath) as? DetailCommentTableViewCell else {return UITableViewCell() }
+            
+            let date = poster.createdAt
+            let index = date.firstIndex(of: "T")!
+            cell.userNickName.text = poster.user.username
+            cell.contentLabel.text = poster.text
+            cell.dateLabel.text = "\(date[..<index])"
+            cell.numberOfCommentLabel.text = "댓글 \(poster.comments.count)"
+            return cell
+        }else{
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailPostTableViewCell", for: indexPath) as? DetailPostTableViewCell else {return UITableViewCell() }
+            
+            cell.comment.text = comments[indexPath.row].comment
+            cell.nickName.text = comments[indexPath.row].user.username
+            cell.buttonAction = { [unowned self] in
+                print("신고")
+            }
+            cells.append(cell)
             return cell
         }
         
-        return tmp
-    
         
+        
+//        let tmp = viewModel.cellForRowAt(tableView, cellForRowAt: indexPath)
+//        if let cell = tmp as? DetailPostTableViewCell {
+//            cell.button.addTarget(self, action: #selector(commentEditButtonClicked), for: .touchUpInside)
+//            return cell
+//        }
+//
+//        return tmp
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 400
+            return mainView.tableView.rowHeight
         }
         return 80
     }
 }
+

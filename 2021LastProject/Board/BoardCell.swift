@@ -13,8 +13,6 @@ class BoardCell: UITableViewCell, ViewRepresentable {
     let content = UILabel()
     let date = UILabel()
 
-    let line = UIView()
-    
     let commentLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -31,15 +29,11 @@ class BoardCell: UITableViewCell, ViewRepresentable {
         addSubview(writer)
         addSubview(content)
         addSubview(date)
-        
-        addSubview(line)
         addSubview(commentLabel)
-        line.backgroundColor = .gray
         
-        content.font = UIFont.systemFont(ofSize: 22)
-        
-        writer.layer.cornerRadius = 5
-        writer.backgroundColor = .systemGray2
+        content.font = UIFont.systemFont(ofSize: 20)
+        date.font = UIFont.systemFont(ofSize: 14)
+
     }
     
     func setUpConstraints() {
@@ -62,16 +56,9 @@ class BoardCell: UITableViewCell, ViewRepresentable {
             make.trailing.equalToSuperview().offset(-4)
             make.height.equalTo(20)
         }
-        
-        line.snp.makeConstraints { make in
-            make.top.equalTo(date.snp.bottom).offset(12)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(1)
-        }
-        
+    
         commentLabel.snp.makeConstraints { make in
-            make.top.equalTo(line.snp.bottom).offset(4)
+            make.top.equalTo(date.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-4)
             make.height.equalTo(20)

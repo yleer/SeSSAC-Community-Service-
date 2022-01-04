@@ -29,6 +29,8 @@ class DetailPostView: UIView, ViewRepresentable {
         addSubview(commentTextField)
         backgroundColor = .white
         commentTextField.placeholder = "댓글을 입력해주세요."
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.allowsSelection = false
     }
     
     func setUpConstraints() {

@@ -10,6 +10,8 @@
 		881B486F2783F84A00DE1031 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B486E2783F84A00DE1031 /* ChangePasswordViewController.swift */; };
 		881B48722783F86A00DE1031 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B48712783F86A00DE1031 /* ChangePasswordViewModel.swift */; };
 		881B48742783F87300DE1031 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B48732783F87300DE1031 /* ChangePasswordView.swift */; };
+		881B4879278453B800DE1031 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 881B4878278453B800DE1031 /* Alamofire */; };
+		881B487B27848B8B00DE1031 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B487A27848B8B00DE1031 /* Comments.swift */; };
 		887CD4FC277EA84800709682 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FB277EA84800709682 /* UserData.swift */; };
 		887CD4FE277EA89800709682 /* BoardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FD277EA89800709682 /* BoardData.swift */; };
 		887CD500277EAA5600709682 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FF277EAA5600709682 /* ApiService.swift */; };
@@ -49,6 +51,7 @@
 		881B486E2783F84A00DE1031 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		881B48712783F86A00DE1031 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		881B48732783F87300DE1031 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		881B487A27848B8B00DE1031 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		887CD4FB277EA84800709682 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		887CD4FD277EA89800709682 /* BoardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
 		887CD4FF277EAA5600709682 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				881B4879278453B800DE1031 /* Alamofire in Frameworks */,
 				88BBAF91278320AE00ECEA6F /* Toast in Frameworks */,
 				88A36C75277DE85700DB6DC4 /* SnapKit in Frameworks */,
 			);
@@ -135,6 +139,7 @@
 				887CD4FD277EA89800709682 /* BoardData.swift */,
 				88DFD873277FF8170080753C /* SendPost.swift */,
 				88BBAF9227832A2400ECEA6F /* toJsonData.swift */,
+				881B487A27848B8B00DE1031 /* Comments.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 			packageProductDependencies = (
 				88A36C74277DE85700DB6DC4 /* SnapKit */,
 				88BBAF90278320AE00ECEA6F /* Toast */,
+				881B4878278453B800DE1031 /* Alamofire */,
 			);
 			productName = 2021LastProject;
 			productReference = 88A36C55277DE7BB00DB6DC4 /* 2021LastProject.app */;
@@ -270,6 +276,7 @@
 			packageReferences = (
 				88A36C73277DE85700DB6DC4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				88BBAF8F278320AE00ECEA6F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				881B4877278453B800DE1031 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 88A36C56277DE7BB00DB6DC4 /* Products */;
 			projectDirPath = "";
@@ -323,6 +330,7 @@
 				88DFD876277FFEE00080753C /* DetailPostViewController.swift in Sources */,
 				887CD50B277F24D700709682 /* BoardViewController.swift in Sources */,
 				88BBAF9327832A2400ECEA6F /* toJsonData.swift in Sources */,
+				881B487B27848B8B00DE1031 /* Comments.swift in Sources */,
 				88A36C79277DEB8400DB6DC4 /* RegisterView.swift in Sources */,
 				887CD50F277F251C00709682 /* BoardView.swift in Sources */,
 				887CD4FC277EA84800709682 /* UserData.swift in Sources */,
@@ -540,6 +548,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		881B4877278453B800DE1031 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		88A36C73277DE85700DB6DC4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -559,6 +575,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		881B4878278453B800DE1031 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 881B4877278453B800DE1031 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		88A36C74277DE85700DB6DC4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 88A36C73277DE85700DB6DC4 /* XCRemoteSwiftPackageReference "SnapKit" */;
