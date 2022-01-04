@@ -305,7 +305,41 @@ class ApiService {
 
             completion(nil)
         }.resume()
-
+    }
+    
+    static func changePassword(token: String, currentPassword: String, newPassword: String, confirmNewPassword: String, completion: @escaping (APIError?) -> Void) {
+        let url = URL(string: "http://test.monocoding.com:1231/custom/change-password")!
         
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
+        request.httpBody = "currentPassword=\(currentPassword)&newPassword=\(newPassword)&confirmNewPassword=\(confirmNewPassword)".data(using: .utf8,allowLossyConversion: false)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                completion(.invalidData)
+                print(error)
+                return
+            }
+            
+            guard let _ = data else {
+                completion(.noData)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failed)
+                return
+            }
+            print(response, error)
+            
+            guard response.statusCode == 200 else {
+                print("status code error")
+                completion(.invalidData)
+                return
+            }
+            completion(nil)
+        }.resume()
     }
 }

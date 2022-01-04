@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881B486F2783F84A00DE1031 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B486E2783F84A00DE1031 /* ChangePasswordViewController.swift */; };
+		881B48722783F86A00DE1031 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B48712783F86A00DE1031 /* ChangePasswordViewModel.swift */; };
+		881B48742783F87300DE1031 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B48732783F87300DE1031 /* ChangePasswordView.swift */; };
 		887CD4FC277EA84800709682 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FB277EA84800709682 /* UserData.swift */; };
 		887CD4FE277EA89800709682 /* BoardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FD277EA89800709682 /* BoardData.swift */; };
 		887CD500277EAA5600709682 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD4FF277EAA5600709682 /* ApiService.swift */; };
@@ -43,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		881B486E2783F84A00DE1031 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		881B48712783F86A00DE1031 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		881B48732783F87300DE1031 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		887CD4FB277EA84800709682 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		887CD4FD277EA89800709682 /* BoardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
 		887CD4FF277EAA5600709682 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -91,6 +97,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		881B48702783F85000DE1031 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				881B486E2783F84A00DE1031 /* ChangePasswordViewController.swift */,
+				881B48712783F86A00DE1031 /* ChangePasswordViewModel.swift */,
+				881B48732783F87300DE1031 /* ChangePasswordView.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
 		887CD503277EE17000709682 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +182,7 @@
 				887CD50C277F24F200709682 /* Board */,
 				887CD516277F375A00709682 /* AddPoster */,
 				88DFD877277FFEF80080753C /* DetailPostView */,
+				881B48702783F85000DE1031 /* ChangePassword */,
 			);
 			path = 2021LastProject;
 			sourceTree = "<group>";
@@ -283,12 +300,15 @@
 				887CD513277F2A0F00709682 /* BoardCell.swift in Sources */,
 				88A36C77277DEB6F00DB6DC4 /* RigisterViewController.swift in Sources */,
 				887CD509277EE52B00709682 /* Observable.swift in Sources */,
+				881B486F2783F84A00DE1031 /* ChangePasswordViewController.swift in Sources */,
 				88A36C6F277DE82600DB6DC4 /* WelcomeView.swift in Sources */,
 				887CD500277EAA5600709682 /* ApiService.swift in Sources */,
 				88DFD87B277FFF0E0080753C /* DetailPostView.swift in Sources */,
+				881B48742783F87300DE1031 /* ChangePasswordView.swift in Sources */,
 				887CD518277F376600709682 /* AddPosterView.swift in Sources */,
 				887CD507277EE18600709682 /* LoginView.swift in Sources */,
 				88DFD87D277FFFC20080753C /* DetailPostTableViewCell.swift in Sources */,
+				881B48722783F86A00DE1031 /* ChangePasswordViewModel.swift in Sources */,
 				887CD511277F252200709682 /* BoardViewModel.swift in Sources */,
 				88A36C71277DE82E00DB6DC4 /* WelcomeViewModel.swift in Sources */,
 				887CD4FE277EA89800709682 /* BoardData.swift in Sources */,

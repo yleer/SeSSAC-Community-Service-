@@ -33,7 +33,15 @@ class BoardViewController: UIViewController {
             }
         }
         
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData)),
+            UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(segueToChangePasswordVC))
+        ]
+    }
+    
+    @objc func segueToChangePasswordVC() {
+        let vc = ChangePasswordViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func refreshData(){
