@@ -46,14 +46,10 @@ class LoginViewController: UIViewController {
                     self.present(alertVC, animated: true, completion: nil)
                     return
                 }
-                let vc = BoardViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-//                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-//
-//                windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: BoardViewController())
-//                windowScene.windows.first?.makeKeyAndVisible()
-                
-                
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+
+                windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: BoardViewController())
+                windowScene.windows.first?.makeKeyAndVisible()
             }
         }
     }

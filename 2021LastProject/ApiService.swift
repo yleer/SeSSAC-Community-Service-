@@ -106,7 +106,7 @@ class ApiService {
     
     static func board(token: String, completion: @escaping (Poster?, APIError?) -> Void) {
             
-        let url = URL(string: "http://test.monocoding.com:1231/posts")!
+        let url = URL(string: "http://test.monocoding.com:1231/posts?_sort=created_at:desc")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -192,11 +192,11 @@ class ApiService {
             
             if let error = error {
                 completion(.invalidData)
-                print(error)
+                
                 return
             }
             
-            guard let _ = data else {
+            guard let data = data else {
                 completion(.noData)
                 return
             }
@@ -292,18 +292,25 @@ class ApiService {
         }.resume()
     }
     
-    static func editPost(token: String, postId: Int, text: String, completion: @escaping (APIError?) -> Void) {
-        let url = URL(string: "http://test.monocoding.com:1231/posts/\(postId)")!
-        
+    static func editPost(token: String, postId: Int, text: String, completion: @escaping (PosterElement?, APIError?) -> Void) {
+   
         let parameters: Parameters = [
              "text": text
          ]
     
         AF.request("http://test.monocoding.com:1231/posts/\(postId)", method: .put, parameters: parameters, headers: ["Authorization" : "Bearer \(token)"])
             .response { response in
-                print(response)
+                switch response.result {
+                case .success(let value) :
+                    if let value = value {
+                        guard let poster = try? JSONDecoder().decode(PosterElement.self, from: value) else { return }
+                        completion(poster, nil)
+                    }
+            
+                default: return
+                }
             }
-        
+
         
 //        var request = URLRequest(url: url)
 //
@@ -381,6 +388,95 @@ class ApiService {
                 return
             }
             completion(nil)
+        }.resume()
+    }
+    
+    
+    static func deleteComment(token: String, commentId: Int, completion: @escaping (APIError?) -> Void) {
+        let url = URL(string: "http://test.monocoding.com:1231/comments/\(commentId)")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
+     
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                completion(.invalidData)
+                print(error)
+                return
+            }
+            
+            guard let _ = data else {
+                completion(.noData)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failed)
+                return
+            }
+            
+            guard response.statusCode == 200 else {
+                print("status code error")
+                completion(.invalidData)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    static func editComment(token: String, commentId: Int, postId: Int, text: String, completion: @escaping (APIError?) -> Void) {
+        let parameters: Parameters = [
+            "comment": text,
+            "post": postId
+         ]
+    
+        AF.request("http://test.monocoding.com:1231/comments/\(commentId)", method: .put, parameters: parameters, headers: ["Authorization" : "Bearer \(token)"])
+            .response { response in
+                print(response)
+            }
+    }
+    
+    static func searchComment(token: String, commentId: Int,  completion: @escaping (Comment2?, APIError?) -> Void) {
+        let url = URL(string: "http://test.monocoding.com:1231/comments/\(commentId)")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
+     
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                completion(nil, .invalidData)
+                print(error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(nil, .noData)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(nil, .failed)
+                return
+            }
+            
+            guard response.statusCode == 200 else {
+                print("status code error")
+                completion(nil, .invalidData)
+                return
+            }
+            do {
+                let data = try JSONDecoder().decode(Comment2.self, from: data)
+                completion(data, nil)
+            }catch{
+                print("error decoding data")
+            }
         }.resume()
     }
 }

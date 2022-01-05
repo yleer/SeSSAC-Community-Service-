@@ -18,6 +18,11 @@ class BoardViewController: UIViewController {
         self.view = mainView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getPosters()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.tableView.delegate = self
@@ -27,16 +32,20 @@ class BoardViewController: UIViewController {
         mainView.addPostButton.addTarget(self, action: #selector(addPostButtonClicked), for: .touchUpInside)
         
 
-        viewModel.getPoster {
-            DispatchQueue.main.async {
-                self.mainView.tableView.reloadData()
-            }
-        }
+        getPosters()
         
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData)),
             UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(segueToChangePasswordVC))
         ]
+    }
+    
+    func getPosters() {
+        viewModel.getPoster {
+            DispatchQueue.main.async {
+                self.mainView.tableView.reloadData()
+            }
+        }
     }
     
     @objc func segueToChangePasswordVC() {
@@ -75,7 +84,9 @@ extension BoardViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let poster = viewModel.didSelectRowAt(didSelectRowAt: indexPath)
-        let vc = DetailPostViewController()
+        let stroyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let vc = stroyBoard.instantiateViewController(withIdentifier: "DetailPostViewController") as? DetailPostViewController else { return }
         vc.poster = poster
         navigationController?.pushViewController(vc, animated: true)
     }    

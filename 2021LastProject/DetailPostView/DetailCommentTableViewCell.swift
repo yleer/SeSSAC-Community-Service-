@@ -10,22 +10,21 @@ import UIKit
 
 class DetailCommentTableViewCell: UITableViewCell, ViewRepresentable {
   
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userNickName: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var divider: UIView!
+    @IBOutlet weak var numberOfCommentLabel: UILabel!
+    @IBOutlet weak var lastDivider: UIView!
     
     override func layoutSubviews() {
         super.layoutSubviews()
         contentLabel.sizeToFit()
     }
-    let userImageView = UIImageView()
-    let userNickName = UILabel()
-    let dateLabel = UILabel()
-    
-    let divider = UIView()
-    
-    let contentLabel = UILabel()
     
     let contentBelowDivder = UIView()
-    let numberOfCommentLabel = UILabel()
-    let lastDivider = UIView()
+
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -35,8 +34,11 @@ class DetailCommentTableViewCell: UITableViewCell, ViewRepresentable {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+//        fatalError("init(coder:) has not been implemented")
     }
+    
+    
     
     func setUpView() {
         addSubview(userImageView)

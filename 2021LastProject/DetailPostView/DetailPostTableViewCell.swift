@@ -7,14 +7,14 @@
 
 import UIKit
 
-
-
-
 class DetailPostTableViewCell: UITableViewCell, ViewRepresentable {
  
-    let nickName = UILabel()
-    let comment = UILabel()
-    let button = UIButton()
+    @IBOutlet weak var nickName: UILabel!
+    @IBOutlet weak var comment: UILabel!
+    @IBOutlet weak var button: UIButton!
+//    let nickName = UILabel()
+//    let comment = UILabel()
+//    let button = UIButton()
     
     var buttonAction : (() -> ())?
     
@@ -28,7 +28,8 @@ class DetailPostTableViewCell: UITableViewCell, ViewRepresentable {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+//        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     

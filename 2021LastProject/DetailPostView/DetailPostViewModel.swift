@@ -13,14 +13,14 @@ class DetailPostViewModel {
     var poster: PosterElement!
     var comments: Comments = []
     
-    func writeComment(comment: String, id: Int) {
+    
+    func writeComment(comment: String, id: Int, completion: @escaping (Comment) -> Void) {
         if let token = UserDefaults.standard.string(forKey: "token") {
             ApiService.writeComment(token: token, comment: comment, postId: id) { error in
                 if let error = error {
                     print("comment not created", error)
                     return
                 }
-                print("comment created")
             }
         }
     }
@@ -36,6 +36,22 @@ class DetailPostViewModel {
                     completion()
                 }
             }
+        }
+    }
+    
+    func deleteComment(id: Int, completion: @escaping (_ result: Bool) -> Void){
+        if let token = UserDefaults.standard.string(forKey: "token") {
+            DispatchQueue.main.async {
+                ApiService.deleteComment(token: token, commentId: id) { error in
+                    if let error = error {
+                        print(error)
+                        completion(false)
+                        return
+                    }
+                    completion(true)
+                }
+            }
+            
         }
     }
     
@@ -80,17 +96,7 @@ class DetailPostViewModel {
             
             cell.comment.text = comments[indexPath.row].comment
             cell.nickName.text = comments[indexPath.row].user.username
-            cell.button.addTarget(DetailPostViewController.self, action: #selector(commentButtonClicked), for: .touchUpInside)
             return cell
         }
     }
-    
-    @objc func commentButtonClicked() {
-        print("gg")
-    }
-    
-    
-    
-    
-
 }

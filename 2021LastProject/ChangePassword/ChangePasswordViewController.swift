@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Toast
 
 class ChangePasswordViewController: UIViewController {
 
@@ -28,8 +28,18 @@ class ChangePasswordViewController: UIViewController {
         mainView.confirmButton.addTarget(self, action: #selector(changePasswordButtonClicked), for: .touchUpInside)
     }
     
+
     @objc func changePasswordButtonClicked() {
-        viewModel.changePassword()
+        viewModel.changePassword { result in
+            if result {
+                self.view.makeToast("비밀번호 변경했습니다.")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }else{
+                self.view.makeToast("비밀번호 변경을 실패했습니다.")
+            }
+        }
     }
     
     

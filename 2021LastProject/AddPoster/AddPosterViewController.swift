@@ -7,6 +7,7 @@
 
 
 import UIKit
+import Toast
 
 class AddPosterViewController: UIViewController {
     
@@ -15,6 +16,8 @@ class AddPosterViewController: UIViewController {
     let viewModel = AddPosterViewModel()
     var previousText: String?
     var id : Int?
+    var commentNumber: Int?
+    var delegate: PassPosterDataDelegate?
     
     override func loadView() {
         super.loadView()
@@ -32,29 +35,52 @@ class AddPosterViewController: UIViewController {
         }
         
         if let previousText = previousText{
-            title = "수정"
+            title = "글 수정"
             mainView.textView.text = previousText
+        }
+        
+        if let comment = commentNumber {
+            title = "댓글 수정"
+            viewModel.getComment(commentId: comment) { comment, postId in
+                DispatchQueue.main.async {
+                    self.mainView.textView.text = comment
+                    self.id = postId
+                }
+                
+            }
         }
     }
     
     @objc func saveButtonClicked (_ button: UIButton) {
+        delegate?.sendPosterData(poster: nil)
         
-        if previousText == nil {
+        if previousText == nil && commentNumber == nil {
             if let text = mainView.textView.text {
                 viewModel.posterText.value = text
-                viewModel.addPost()
+                viewModel.addPost { result in
+                    if result {
+                        self.view.makeToast("글을 작성했습니다.")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                            self.delegate?.sendPosterData(poster: nil)
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }else{
+                        self.view.makeToast("글 작성에 실패했습니다.")
+                    }
+                }
             }
-        }else{
-//            if let text = mainView.textView.text {
-//
-//            }
-            
-            print("editing")
+        }else if previousText != nil{
             viewModel.posterText.value = mainView.textView.text
-            viewModel.editPost(postId: id!)
+            viewModel.editPost(postId: id!) { poster in
+                self.delegate?.sendPosterData(poster: poster)
+            }
+        }else if commentNumber != nil {
+            viewModel.editComment(commentId: commentNumber!, postId: id!, text: mainView.textView.text)
+            self.view.makeToast("댓글 수정을 완료했습니다.")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-        
-        
     }
 }
 
