@@ -62,9 +62,8 @@ class RigisterViewController: UIViewController {
             }
         }else{
             // 회원가입 성공 -> 화면 전환 해야됨.
-            
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-            
+
             windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: BoardViewController())
             windowScene.windows.first?.makeKeyAndVisible()
         }

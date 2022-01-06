@@ -47,6 +47,7 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
                 self.tableView.reloadData()
             }
         }
+        tableView.rowHeight = UITableView.automaticDimension
         print(poster!.id)
         
         let doneButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -133,7 +134,7 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
             cell.userNickName.text = poster!.user.username
             cell.contentLabel.text = poster!.text
             cell.dateLabel.text = "\(date[..<index])"
-            cell.numberOfCommentLabel.text = "댓글 \(poster!.comments.count)"
+            cell.numberOfCommentLabel.text = "댓글 \(comments.count)"
             return cell
         }else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailPostTableViewCell", for: indexPath) as? DetailPostTableViewCell else {return UITableViewCell() }
@@ -186,7 +187,7 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 400
+            return tableView.rowHeight
         }
         return 80
     }
