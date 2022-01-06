@@ -15,15 +15,9 @@ protocol PassPosterDataDelegate {
 
 class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.viewComments(id: poster!.id) {
-            self.comments = $0
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        loadComemnts()
     }
     
     
@@ -39,17 +33,16 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     let viewModel = DetailPostViewModel()
     var comments: Comments = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func loadComemnts() {
         viewModel.viewComments(id: poster!.id) {
             self.comments = $0
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-        tableView.rowHeight = UITableView.automaticDimension
-        print(poster!.id)
-        
+    }
+    
+    func setUp() {
         let doneButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         doneButton.backgroundColor = .gray
         doneButton.setTitle("hh", for: .normal)
@@ -61,13 +54,17 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
         doneButton.addTarget(self, action: #selector(createComment), for: .touchUpInside)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadComemnts()
+        tableView.rowHeight = UITableView.automaticDimension
+        setUp()
+    }
+    
     @objc func editPost() {
-   
            if let currentId = UserDefaults.standard.string(forKey: "id"){
                if Int(currentId)! == poster!.user.id{
                    let alertVC = UIAlertController(title: "글을 어떻게 할까요?", message: "", preferredStyle: .actionSheet)
-   
-   
                    let editButton = UIAlertAction(title: "글을 수정하시겠습니까?", style: .default, handler: {_ in
                        let vc = AddPosterViewController()
                        vc.previousText = self.poster!.text
@@ -80,8 +77,6 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
                            self.navigationController?.popViewController(animated: true)
                        }
                    })
-   
-   
                    let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
    
                    alertVC.addAction(editButton)
@@ -102,16 +97,8 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
                 print(comment)
             }
         }
-        
-        viewModel.viewComments(id: poster!.id) {
-            self.comments = $0
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-
+        loadComemnts()
     }
-    var selectedIndex = 0
 }
 
 
