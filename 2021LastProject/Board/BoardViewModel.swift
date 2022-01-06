@@ -12,9 +12,9 @@ class BoardViewModel {
     
     var posters: Poster = []
     
-    func getPoster(completion: @escaping () -> Void) {
+    func getPoster(start: Int,limit: Int, completion: @escaping () -> Void) {
         if let token = UserDefaults.standard.string(forKey: "token") {
-            ApiService.board(token: token) { posters, error in
+            ApiService.board(token: token,start: start, limit: limit) { posters, error in
                 if let error = error {
                     print(error)
                     return
@@ -22,7 +22,7 @@ class BoardViewModel {
                     guard let posters = posters else {
                         return
                     }
-                    self.posters = posters
+                    self.posters += posters
                     completion()
                 }
             }

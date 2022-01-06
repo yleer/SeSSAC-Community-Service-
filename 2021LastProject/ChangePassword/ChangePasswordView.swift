@@ -36,6 +36,12 @@ class ChangePasswordView: UIView, ViewRepresentable {
         newPasswordTextField.placeholder = "새 비밀번호를 입력해주세요."
         checkPasswordTextField.placeholder = "비밀번호 확인"
         confirmButton.backgroundColor = .green
+        
+        currentPassword.isSecureTextEntry = true
+        checkPasswordTextField.isSecureTextEntry = true
+        newPasswordTextField.isSecureTextEntry = true
+        
+        confirmButton.setTitle("비밀번호 변경하기", for: .normal)
     }
     
     func setUpConstraints() {

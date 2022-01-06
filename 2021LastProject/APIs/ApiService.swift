@@ -33,8 +33,10 @@ class ApiService {
         
         URLSession.request(endPoint: request, completion: completion)
     }
-    static func board(token: String, completion: @escaping (Poster?, APIError?) -> Void) {
-        var request = URLRequest(url: EndPoint.viewBoard.url)
+    
+    
+    static func board(token: String, start: Int, limit: Int, completion: @escaping (Poster?, APIError?) -> Void) {
+        var request = URLRequest(url: EndPoint.boardPageing(start: start, limit: limit).url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
         URLSession.request(endPoint: request, completion: completion)

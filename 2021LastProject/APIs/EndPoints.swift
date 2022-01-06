@@ -6,15 +6,14 @@
 //
 
 import Foundation
-
+//"http://test.monocoding.com:1231/posts?_start=\(start)&_limit=\(limit)")!
 enum EndPoint {
     case register
     case login
     case viewBoard
-    
     case board(id:Int?)
     case comments(id:Int?)
-    
+    case boardPageing(start: Int, limit: Int)
     case changePassword
 }
 
@@ -47,6 +46,8 @@ extension EndPoint {
             
         case .changePassword:
             return .makeEndPoint("custom/change-password")
+        case .boardPageing(start: let start, limit: let limit):
+            return .makeEndPoint("posts?_sort=created_at:desc&_start=\(start)&_limit=\(limit)")
         }
     }
 }

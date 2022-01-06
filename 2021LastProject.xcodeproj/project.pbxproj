@@ -27,6 +27,7 @@
 		887CD515277F375600709682 /* AddPosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD514277F375600709682 /* AddPosterViewController.swift */; };
 		887CD518277F376600709682 /* AddPosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD517277F376600709682 /* AddPosterView.swift */; };
 		887CD51A277F377200709682 /* AddPosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CD519277F377200709682 /* AddPosterViewModel.swift */; };
+		888C5AE227870232005C8251 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 888C5AE127870232005C8251 /* IQKeyboardManagerSwift */; };
 		88A36C59277DE7BB00DB6DC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */; };
 		88A36C5B277DE7BB00DB6DC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */; };
 		88A36C62277DE7BF00DB6DC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A36C61277DE7BF00DB6DC4 /* Assets.xcassets */; };
@@ -103,6 +104,7 @@
 				88A3D8D927854463001971A0 /* RxSwift in Frameworks */,
 				88A3D8D727854463001971A0 /* RxCocoa in Frameworks */,
 				88A36C75277DE85700DB6DC4 /* SnapKit in Frameworks */,
+				888C5AE227870232005C8251 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +176,6 @@
 		88A36C4C277DE7BB00DB6DC4 = {
 			isa = PBXGroup;
 			children = (
-				88A3D8DA278544AD001971A0 /* Main.storyboard */,
 				88A36C57277DE7BB00DB6DC4 /* 2021LastProject */,
 				88A36C56277DE7BB00DB6DC4 /* Products */,
 			);
@@ -191,6 +192,7 @@
 		88A36C57277DE7BB00DB6DC4 /* 2021LastProject */ = {
 			isa = PBXGroup;
 			children = (
+				88A3D8DA278544AD001971A0 /* Main.storyboard */,
 				88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */,
 				88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */,
 				88A36C61277DE7BF00DB6DC4 /* Assets.xcassets */,
@@ -264,6 +266,7 @@
 				881B4878278453B800DE1031 /* Alamofire */,
 				88A3D8D627854463001971A0 /* RxCocoa */,
 				88A3D8D827854463001971A0 /* RxSwift */,
+				888C5AE127870232005C8251 /* IQKeyboardManagerSwift */,
 			);
 			productName = 2021LastProject;
 			productReference = 88A36C55277DE7BB00DB6DC4 /* 2021LastProject.app */;
@@ -298,6 +301,7 @@
 				88BBAF8F278320AE00ECEA6F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				881B4877278453B800DE1031 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				88A3D8D527854462001971A0 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				888C5AE027870232005C8251 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 88A36C56277DE7BB00DB6DC4 /* Products */;
 			projectDirPath = "";
@@ -579,6 +583,14 @@
 				kind = branch;
 			};
 		};
+		888C5AE027870232005C8251 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		88A36C73277DE85700DB6DC4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -610,6 +622,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 881B4877278453B800DE1031 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		888C5AE127870232005C8251 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 888C5AE027870232005C8251 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 		88A36C74277DE85700DB6DC4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

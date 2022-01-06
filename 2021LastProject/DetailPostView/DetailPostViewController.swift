@@ -97,9 +97,14 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
                 print(comment)
             }
         }
-        let indexPath = IndexPath(row: comments.count - 1, section: 1)
-        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        tableView.setContentOffset(CGPoint(x: 0, y: CGFloat.greatestFiniteMagnitude), animated: true)
+        if comments.count != 0 {
+            let indexPath = IndexPath(row: comments.count - 1, section: 1)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+        
         loadComemnts()
+        commentTextField.text = ""
     }
 }
 

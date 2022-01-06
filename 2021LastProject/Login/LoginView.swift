@@ -41,6 +41,9 @@ class LoginView: UIView, ViewRepresentable {
         
         stack.distribution = .fillEqually
         stack.spacing = 5
+        passwordTextField.isSecureTextEntry = true
+        
+        
     }
     
     func setUpConstraints() {

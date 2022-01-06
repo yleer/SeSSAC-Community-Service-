@@ -23,6 +23,7 @@ class RegisterView: UIView, ViewRepresentable{
         super.init(frame: frame)
         setUpView()
         setUpConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -53,7 +54,8 @@ class RegisterView: UIView, ViewRepresentable{
         registerButton.setTitleColor(.white, for: .normal)
         registerButton.backgroundColor = .green
         
-       
+        passwordTextField.isSecureTextEntry = true
+        passwordCheckTextField.isSecureTextEntry = true
     }
     
     func setUpConstraints() {
