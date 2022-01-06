@@ -97,6 +97,8 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
                 print(comment)
             }
         }
+        let indexPath = IndexPath(row: comments.count - 1, section: 1)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         loadComemnts()
     }
 }
