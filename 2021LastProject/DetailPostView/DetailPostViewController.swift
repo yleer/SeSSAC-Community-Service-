@@ -62,7 +62,7 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     }
     
     @objc func editPost() {
-           if let currentId = UserDefaults.standard.string(forKey: "id"){
+           if let currentId = UserDefaults.standard.string(forKey: "id") {
                if Int(currentId)! == poster!.user.id{
                    let alertVC = UIAlertController(title: "글을 어떻게 할까요?", message: "", preferredStyle: .actionSheet)
                    let editButton = UIAlertAction(title: "글을 수정하시겠습니까?", style: .default, handler: {_ in
@@ -92,19 +92,20 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
        }
     
     @objc func createComment() {
-        if let text = commentTextField.text {
+        if let text = commentTextField.text, text.count > 0 {
             viewModel.writeComment(comment: text, id: poster!.id) { comment in
                 print(comment)
             }
-        }
-//        tableView.setContentOffset(CGPoint(x: 0, y: CGFloat.greatestFiniteMagnitude), animated: true)
-        if comments.count != 0 {
-            let indexPath = IndexPath(row: comments.count - 1, section: 1)
-            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            if comments.count != 0 {
+                let indexPath = IndexPath(row: comments.count - 1, section: 1)
+                tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
+            loadComemnts()
+            commentTextField.text = ""
+        }else{
+            self.view.makeToast("글자를 입력해 주세요.")
         }
         
-        loadComemnts()
-        commentTextField.text = ""
     }
 }
 
@@ -142,41 +143,54 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func editCommentButtonClicked(_ button: UIButton) {
-        let alertVC = UIAlertController(title: "댓글에 대하여 어떤작업을 수행하시겠습니까?", message: "", preferredStyle: .actionSheet)
-        let editButton = UIAlertAction(title: "수정하기", style: .default, handler: { _ in
-            let vc = AddPosterViewController()
-            vc.commentNumber = button.tag
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        })
-        let deleteButton = UIAlertAction(title: "삭제하기", style: .destructive, handler: { _ in
-            self.viewModel.deleteComment(id: button.tag) { result in
-                DispatchQueue.main.async {
-                    if result{
-                        self.viewModel.viewComments(id: self.poster!.id) {
-                            self.comments = $0
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                        }
-                        self.view.makeToast("댓글이 삭제되었습니다..")
-                        
-                    }else{
-                        self.view.makeToast("작성자가 아니면 댓글 삭제가 불가능합니다.")
-                    }
-                }
-                
+        
+        var selectedComment: Comment2 = comments[0]
+        
+        for comment in comments {
+            if comment.id == button.tag {
+                selectedComment = comment
+                break
             }
-        })
+        }
         
-        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        alertVC.addAction(editButton)
-        alertVC.addAction(deleteButton)
-        alertVC.addAction(cancelButton)
-        
-        present(alertVC, animated: true, completion: nil)
-        
+        if selectedComment.user.id == UserDefaults.standard.integer(forKey: "id") {
+            let alertVC = UIAlertController(title: "댓글에 대하여 어떤작업을 수행하시겠습니까?", message: "", preferredStyle: .actionSheet)
+            let editButton = UIAlertAction(title: "수정하기", style: .default, handler: { _ in
+                let vc = AddPosterViewController()
+                vc.commentNumber = button.tag
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            let deleteButton = UIAlertAction(title: "삭제하기", style: .destructive, handler: { _ in
+                self.viewModel.deleteComment(id: button.tag) { result in
+                    DispatchQueue.main.async {
+                        if result{
+                            self.viewModel.viewComments(id: self.poster!.id) {
+                                self.comments = $0
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                            self.view.makeToast("댓글이 삭제되었습니다..")
+                            
+                        }else{
+                            self.view.makeToast("작성자가 아니면 댓글 삭제가 불가능합니다.")
+                        }
+                    }
+                    
+                }
+            })
+            
+            let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            
+            alertVC.addAction(editButton)
+            alertVC.addAction(deleteButton)
+            alertVC.addAction(cancelButton)
+            
+            present(alertVC, animated: true, completion: nil)
+            
+        }else {
+            self.view.makeToast("본인 댓글만 수정 가능합니다.")
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

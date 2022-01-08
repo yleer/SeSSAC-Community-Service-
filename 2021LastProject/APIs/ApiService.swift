@@ -13,6 +13,7 @@ enum APIError: Error {
     case noData
     case failed
     case invalidData
+    
 }
 
 class ApiService {

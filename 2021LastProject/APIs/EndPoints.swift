@@ -79,7 +79,6 @@ extension URLSession {
                 guard error == nil else{
                     completion(nil, .failed)
                     return
-
                 }
                 guard let data = data else {
                     completion(nil, .noData)
@@ -132,9 +131,6 @@ extension URLSession {
                     return
                 }
                 completion(nil)
-            
-
-                
             }
         }
     }
