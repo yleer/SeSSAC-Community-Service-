@@ -12,7 +12,7 @@ class BoardViewController: UIViewController {
     
     let mainView = BoardView()
     let viewModel = BoardViewModel()
-    var start = 1
+    var start = 0
     var limit = 10
     
     override func loadView() {
@@ -22,7 +22,7 @@ class BoardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getPosters()
+        getPosters(refrsh: true)
     }
     
     override func viewDidLoad() {
@@ -43,12 +43,21 @@ class BoardViewController: UIViewController {
         ]
     }
     
-    func getPosters() {
-        viewModel.getPoster(start: start, limit: limit) {
-            DispatchQueue.main.async {
-                self.mainView.tableView.reloadData()
+    func getPosters(refrsh: Bool = false) {
+        if refrsh {
+            viewModel.getPoster(start: start, limit: limit, refresh: true) {
+                DispatchQueue.main.async {
+                    self.mainView.tableView.reloadData()
+                }
+            }
+        }else {
+            viewModel.getPoster(start: start, limit: limit) {
+                DispatchQueue.main.async {
+                    self.mainView.tableView.reloadData()
+                }
             }
         }
+        
     }
     
     @objc func segueToChangePasswordVC() {
@@ -57,7 +66,8 @@ class BoardViewController: UIViewController {
     }
     
     @objc func refreshData(){
-        getPosters()
+        start = 0
+        getPosters(refrsh: true)
     }
     
     
