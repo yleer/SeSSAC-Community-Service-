@@ -91,7 +91,9 @@ extension URLSession {
                 }
 
                 guard response.statusCode == 200 else {
-                    completion(nil, .failed)
+                    let decoder = JSONDecoder()
+                    let errorData = try! decoder.decode(ChangePasswordError.self, from: data)
+                    completion(nil, .invalidStatusCode(code: response.statusCode, errorContent: errorData.message))
                     return
                 }
 
@@ -100,39 +102,74 @@ extension URLSession {
                     let userData = try decoder.decode(T.self, from: data)
                     completion(userData, nil)
                 }catch{
-                    completion(nil, .invalidData)
+                    completion(nil, .invalidData(code: response.statusCode))
                 }
             }
         }
     }
     
+    static func request2<T: Decodable>(_ session: URLSession = .shared, endPoint: URLRequest, completion: @escaping (T?, APIError?) -> Void ) {
+        session.dataTask(endPoint) { data, response, error in
+            DispatchQueue.main.async {
+                guard error == nil else{
+                    completion(nil, .failed)
+                    return
+                }
+                guard let data = data else {
+                    completion(nil, .noData)
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse else {
+                    completion(nil, .invalidResponse)
+                    return
+                }
+
+                guard response.statusCode == 200 else {
+                    let decoder = JSONDecoder()
+                    let errorData = try! decoder.decode(LoginError.self, from: data)
+                    completion(nil, .invalidStatusCode(code: response.statusCode, errorContent: errorData.message[0].messages[0].message))
+                    return
+                }
+
+                do{
+                    let decoder = JSONDecoder()
+                    let userData = try decoder.decode(T.self, from: data)
+                    completion(userData, nil)
+                }catch{
+                    completion(nil, .invalidData(code: response.statusCode))
+                }
+            }
+        }
+    }
+    
+    
     static func request (_ session: URLSession = .shared, endPoint: URLRequest, completion: @escaping (APIError?) -> Void ) {
         session.dataTask(endPoint) { data, response, error in
             DispatchQueue.main.async {
-                if let error = error {
-                    completion(.invalidData)
-                    print(error)
+                if let _ = error {
+                    completion(.failed)
                     return
                 }
                 
-                guard let _ = data else {
+                guard let data = data else {
                     completion(.noData)
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse else {
-                    completion(.failed)
+                    completion(.invalidResponse)
                     return
                 }
                 
                 guard response.statusCode == 200 else {
-                    print("status code error")
-                    completion(.invalidData)
+                    let decoder = JSONDecoder()
+                    let errorData = try! decoder.decode(ChangePasswordError.self, from: data)
+                    completion(.invalidStatusCode(code: response.statusCode, errorContent: errorData.message))
                     return
                 }
                 completion(nil)
             }
         }
     }
-    
 }

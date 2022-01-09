@@ -15,13 +15,23 @@ class RegisterViewModel {
     
     
     // user 정보를 가져와서 그 정보 사용하고 싶음.
-    func register() -> RegisterError? {
-        print(nickName.value, password.value, email.value)
-        
+    func register(completion: @escaping (String) -> Void) -> RegisterError? {
         if isValidEmail(email.value) && nickName.value.count > 4 && password.value == passwordCheck.value && password.value.count != 0  {
             ApiService.register(username: nickName.value, password: password.value, email: email.value) { user, error in
                 if let error = error {
-                    print("error occured while registering", error)
+                    switch error {
+                    case .invalidResponse:
+                        completion("Invalid Response")
+                    case .noData:
+                        completion("No Data")
+                    case .failed:
+                        completion("Failed")
+                    case .invalidData(_):
+                        completion("Invaild Data")
+                    case .invalidStatusCode(_,  _):
+                        completion("Invalid Status code")
+                    }
+                    
                 }else{
                     print("success")
                     UserDefaults.standard.set(user!.jwt, forKey: "token")

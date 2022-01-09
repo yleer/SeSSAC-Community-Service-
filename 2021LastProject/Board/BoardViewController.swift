@@ -7,6 +7,7 @@
 
 
 import UIKit
+import Toast
 
 class BoardViewController: UIViewController {
     
@@ -22,42 +23,52 @@ class BoardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getPosters(refrsh: true)
+        getPosters(refrsh: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
+        getPosters()
+    }
+    
+    func setUp() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
-        mainView.tableView.register(BoardCell.self, forCellReuseIdentifier: "BoardCell")
-        
-        mainView.addPostButton.addTarget(self, action: #selector(addPostButtonClicked), for: .touchUpInside)
         mainView.tableView.prefetchDataSource = self
-        
-
-        getPosters()
-        
+        mainView.tableView.register(BoardCell.self, forCellReuseIdentifier: "BoardCell")
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData)),
             UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(segueToChangePasswordVC))
         ]
+        mainView.addPostButton.addTarget(self, action: #selector(addPostButtonClicked), for: .touchUpInside)
     }
     
+    func tokenExpired() {
+        self.view.makeToast("다시 로그인 해주세요.")
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.7) {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: WelcomeViewContoller())
+            windowScene.windows.first?.makeKeyAndVisible()
+        }
+    }
+
     func getPosters(refrsh: Bool = false) {
-        if refrsh {
-            viewModel.getPoster(start: start, limit: limit, refresh: true) {
+        viewModel.getPoster(start: start, limit: limit, refresh: refrsh) { message, code in
+            if message == nil && code == nil{
                 DispatchQueue.main.async {
                     self.mainView.tableView.reloadData()
                 }
-            }
-        }else {
-            viewModel.getPoster(start: start, limit: limit) {
-                DispatchQueue.main.async {
-                    self.mainView.tableView.reloadData()
+            }else{
+                guard let code = code else {
+                    self.view.makeToast(message)
+                    return
+                }
+                if code == 401 {
+                    self.tokenExpired()
                 }
             }
         }
-        
     }
     
     @objc func segueToChangePasswordVC() {
@@ -70,12 +81,10 @@ class BoardViewController: UIViewController {
         getPosters(refrsh: true)
     }
     
-    
     @objc func addPostButtonClicked() {
         let vc = AddPosterViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 extension BoardViewController: UITableViewDelegate, UITableViewDataSource {
@@ -118,3 +127,5 @@ extension BoardViewController: UITableViewDataSourcePrefetching {
         print("취소\(indexPaths)")
     }
 }
+
+

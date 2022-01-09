@@ -12,26 +12,35 @@ class BoardViewModel {
     
     var posters: Poster = []
     
-    func getPoster(start: Int,limit: Int, refresh: Bool = false , completion: @escaping () -> Void) {
+    func getPoster(start: Int,limit: Int, refresh: Bool = false , completion: @escaping (String?, Int?) -> Void) {
         if refresh {
             posters = []
         }
         if let token = UserDefaults.standard.string(forKey: "token") {
             ApiService.board(token: token,start: start, limit: limit) { posters, error in
                 if let error = error {
-                    print(error)
+                    switch error {
+                    case .invalidResponse:
+                        completion("Invalid Response", nil)
+                    case .noData:
+                        completion("No data", nil)
+                    case .failed:
+                        completion("Failed", nil)
+                    case .invalidData(let code):
+                        completion("Invalid Data", code)
+                    case .invalidStatusCode(let code, let errorContent):
+                        completion(errorContent, code)
+                    }
                     return
                 }else{
                     guard let posters = posters else {
                         return
                     }
                     self.posters += posters
-                    completion()
+                    completion(nil, nil)
                 }
             }
         }
-        
-       
     }
     
     
@@ -40,7 +49,9 @@ class BoardViewModel {
     }
     
     func cellForRowAt(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BoardCell", for: indexPath) as? BoardCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BoardCell", for: indexPath) as? BoardCell else { return UITableViewCell()
+            
+        }
         
         let date = posters[indexPath.row].createdAt
         let index = date.firstIndex(of: "T")!

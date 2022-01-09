@@ -67,6 +67,4 @@ class RegisterView: UIView, ViewRepresentable{
             make.height.equalToSuperview().multipliedBy(0.4)
         }
     }
-    
-    
 }

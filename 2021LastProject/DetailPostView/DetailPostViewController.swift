@@ -33,11 +33,33 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     let viewModel = DetailPostViewModel()
     var comments: Comments = []
     
+    
+    
+    func tokenExpired() {
+        self.view.makeToast("다시 로그인 해주세요.")
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.7) {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: WelcomeViewContoller())
+            windowScene.windows.first?.makeKeyAndVisible()
+        }
+    }
+    
     func loadComemnts() {
-        viewModel.viewComments(id: poster!.id) {
-            self.comments = $0
+        viewModel.viewComments(id: poster!.id) { comment, message, code in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                if let comment = comment {
+                    self.comments = comment
+                    self.tableView.reloadData()
+          
+                }else {
+                    if let code = code {
+                        if code == 401{
+                            self.tokenExpired()
+                        }
+                    }else {
+                        self.view.makeToast(message + "로딩 실패")
+                    }
+                }
             }
         }
     }
@@ -73,8 +95,20 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
                        self.navigationController?.pushViewController(vc, animated: true)
                    })
                    let deleteButton = UIAlertAction(title: "글을 삭제하시겠습니까?", style: .destructive, handler: {_ in
-                       self.viewModel.deletePost(id: self.poster!.id) {
-                           self.navigationController?.popViewController(animated: true)
+                       self.viewModel.deletePost(id: self.poster!.id) { result, messsage, code in
+                           if result {
+                               self.view.makeToast(messsage + "성공")
+                               self.navigationController?.popViewController(animated: true)
+                           }else {
+                               if let code = code {
+                                   if code == 401{
+                                       self.tokenExpired()
+                                   }
+                               }else {
+                                   self.view.makeToast(messsage + "삭제 실패")
+                               }
+                           }
+                           
                        }
                    })
                    let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -93,8 +127,18 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     
     @objc func createComment() {
         if let text = commentTextField.text, text.count > 0 {
-            viewModel.writeComment(comment: text, id: poster!.id) { comment in
-                print(comment)
+            viewModel.writeComment(comment: text, id: poster!.id) { comment, message, code  in
+                if let _ = comment{
+                    self.view.makeToast(message + "성공")
+                }else {
+                    if let code = code {
+                        if code == 401{
+                            self.tokenExpired()
+                        }
+                    }else {
+                        self.view.makeToast(message + "삭제 실패")
+                    }
+                }
             }
             if comments.count != 0 {
                 let indexPath = IndexPath(row: comments.count - 1, section: 1)
@@ -161,15 +205,15 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             let deleteButton = UIAlertAction(title: "삭제하기", style: .destructive, handler: { _ in
-                self.viewModel.deleteComment(id: button.tag) { result in
+                self.viewModel.deleteComment(id: button.tag) { result, message, code  in
                     DispatchQueue.main.async {
                         if result{
-                            self.viewModel.viewComments(id: self.poster!.id) {
-                                self.comments = $0
-                                DispatchQueue.main.async {
-                                    self.tableView.reloadData()
-                                }
-                            }
+//                            self.viewModel.viewComments(id: self.poster!.id) { comment, message, code in
+//                                if let comment = comment {
+//                                    self.comments = comment
+//                                }
+//                            }
+                            self.loadComemnts()
                             self.view.makeToast("댓글이 삭제되었습니다..")
                             
                         }else{

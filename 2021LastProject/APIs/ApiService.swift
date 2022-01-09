@@ -12,7 +12,8 @@ enum APIError: Error {
     case invalidResponse
     case noData
     case failed
-    case invalidData
+    case invalidData(code: Int)
+    case invalidStatusCode(code: Int, errorContent: String)
     
 }
 
@@ -32,7 +33,7 @@ class ApiService {
         request.httpMethod = "POST"
         request.httpBody = "identifier=\(id)&password=\(password)".data(using: .utf8,allowLossyConversion: false)
         
-        URLSession.request(endPoint: request, completion: completion)
+        URLSession.request2(endPoint: request, completion: completion)
     }
     
     
@@ -156,6 +157,21 @@ class ApiService {
         URLSession.request(endPoint: request, completion: completion)
     }
     
+    
+
+//        AF.request(EndPoint.board(id: postId).url, method: .put, parameters: parameters, headers: ["Authorization" : "Bearer \(token)"])
+//            .response { response in
+//                switch response.result {
+//                case .success(let value) :
+//                    if let value = value {
+//                        guard let poster = try? JSONDecoder().decode(PosterElement.self, from: value) else { return }
+//                        completion(poster, nil)
+//                    }
+//
+//                default: return
+//                }
+//            }
+    
     static func editComment(token: String, commentId: Int, postId: Int, text: String, completion: @escaping (APIError?) -> Void) {
         let parameters: Parameters = [
             "comment": text,
@@ -164,9 +180,21 @@ class ApiService {
     
         AF.request(EndPoint.comments(id: commentId).url, method: .put, parameters: parameters, headers: ["Authorization" : "Bearer \(token)"])
             .response { response in
-                print(response)
+                switch response.result {
+                case .success(let value) :
+                    if let _ = value {
+                        completion(nil)
+                    }
+                default: return
+                }
             }
     }
+    
+    
+    
+    
+    
+    
     static func searchComment(token: String, commentId: Int,  completion: @escaping (Comment2?, APIError?) -> Void) {
         var request = URLRequest(url: EndPoint.comments(id: commentId).url)
         request.httpMethod = "GET"

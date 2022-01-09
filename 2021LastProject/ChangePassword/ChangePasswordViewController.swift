@@ -22,6 +22,22 @@ class ChangePasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         binding()
+        addTargets()
+    }
+    
+    func binding() {
+        viewModel.currentPassword.bind { text in
+            self.mainView.currentPassword.text = text
+        }
+        viewModel.chekcPassword.bind { text in
+            self.mainView.checkPasswordTextField.text = text
+        }
+        viewModel.newPassword.bind { text in
+            self.mainView.newPasswordTextField.text = text
+        }
+    }
+    
+    func addTargets() {
         mainView.newPasswordTextField.addTarget(self, action: #selector(newPasswordChange), for: .editingChanged)
         mainView.currentPassword.addTarget(self, action: #selector(currentTextFieldChanged), for: .editingChanged)
         mainView.checkPasswordTextField.addTarget(self, action: #selector(checkPasswordChange), for: .editingChanged)
@@ -30,15 +46,29 @@ class ChangePasswordViewController: UIViewController {
     
 
     @objc func changePasswordButtonClicked() {
-        viewModel.changePassword { result in
+        viewModel.changePassword { result, message, code in
+            
+            if let code = code {
+                if code == 401 {
+                    self.view.makeToast(message + "다시 로그인 해주세요.")
+                    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.7) {
+                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: WelcomeViewContoller())
+                        windowScene.windows.first?.makeKeyAndVisible()
+                        return
+                    }
+                }
+            }
             if result {
-                self.view.makeToast("비밀번호 변경했습니다.")
+                self.view.makeToast(message)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                     self.navigationController?.popViewController(animated: true)
                 }
             }else{
-                self.view.makeToast("비밀번호 변경을 실패했습니다.")
+                self.view.makeToast(message)
             }
+            
+            
         }
     }
     
@@ -56,15 +86,5 @@ class ChangePasswordViewController: UIViewController {
     }
     
     
-    func binding() {
-        viewModel.currentPassword.bind { text in
-            self.mainView.currentPassword.text = text
-        }
-        viewModel.chekcPassword.bind { text in
-            self.mainView.checkPasswordTextField.text = text
-        }
-        viewModel.newPassword.bind { text in
-            self.mainView.newPasswordTextField.text = text
-        }
-    }
+   
 }

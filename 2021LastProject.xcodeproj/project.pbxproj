@@ -44,6 +44,7 @@
 		88A3D8DB278544AD001971A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A3D8DA278544AD001971A0 /* Main.storyboard */; };
 		88BBAF91278320AE00ECEA6F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 88BBAF90278320AE00ECEA6F /* Toast */; };
 		88BBAF9327832A2400ECEA6F /* toJsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BBAF9227832A2400ECEA6F /* toJsonData.swift */; };
+		88CA96C1278A9CED00155F66 /* ChangePasswordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA96C0278A9CED00155F66 /* ChangePasswordError.swift */; };
 		88DFD874277FF8170080753C /* SendPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD873277FF8170080753C /* SendPost.swift */; };
 		88DFD876277FFEE00080753C /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD875277FFEE00080753C /* DetailPostViewController.swift */; };
 		88DFD879277FFF080080753C /* DetailPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFD878277FFF080080753C /* DetailPostViewModel.swift */; };
@@ -86,6 +87,7 @@
 		88A36C7A277DEB8D00DB6DC4 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		88A3D8DA278544AD001971A0 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		88BBAF9227832A2400ECEA6F /* toJsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toJsonData.swift; sourceTree = "<group>"; };
+		88CA96C0278A9CED00155F66 /* ChangePasswordError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordError.swift; sourceTree = "<group>"; };
 		88DFD873277FF8170080753C /* SendPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPost.swift; sourceTree = "<group>"; };
 		88DFD875277FFEE00080753C /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		88DFD878277FFF080080753C /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
@@ -154,11 +156,13 @@
 		887CD50D277F250B00709682 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				887CD508277EE52B00709682 /* Observable.swift */,
 				887CD4FB277EA84800709682 /* UserData.swift */,
 				887CD4FD277EA89800709682 /* BoardData.swift */,
 				88DFD873277FF8170080753C /* SendPost.swift */,
 				88BBAF9227832A2400ECEA6F /* toJsonData.swift */,
 				881B487A27848B8B00DE1031 /* Comments.swift */,
+				88CA96C0278A9CED00155F66 /* ChangePasswordError.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -192,22 +196,21 @@
 		88A36C57277DE7BB00DB6DC4 /* 2021LastProject */ = {
 			isa = PBXGroup;
 			children = (
+				887CD516277F375A00709682 /* AddPoster */,
+				88A36C72277DE83200DB6DC4 /* Welcome */,
+				887CD50C277F24F200709682 /* Board */,
+				881B48702783F85000DE1031 /* ChangePassword */,
 				88A3D8DA278544AD001971A0 /* Main.storyboard */,
-				88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */,
+				887CD503277EE17000709682 /* Login */,
+				88A36C7C277DEB9600DB6DC4 /* Register */,
 				88A36C5A277DE7BB00DB6DC4 /* SceneDelegate.swift */,
+				88A36C58277DE7BB00DB6DC4 /* AppDelegate.swift */,
 				88A36C61277DE7BF00DB6DC4 /* Assets.xcassets */,
 				88A36C63277DE7BF00DB6DC4 /* LaunchScreen.storyboard */,
 				88A36C66277DE7BF00DB6DC4 /* Info.plist */,
-				88A36C72277DE83200DB6DC4 /* Welcome */,
-				88A36C7C277DEB9600DB6DC4 /* Register */,
 				887CD50D277F250B00709682 /* Data */,
 				88533D8D27869BBD00761757 /* APIs */,
-				887CD503277EE17000709682 /* Login */,
-				887CD508277EE52B00709682 /* Observable.swift */,
-				887CD50C277F24F200709682 /* Board */,
-				887CD516277F375A00709682 /* AddPoster */,
 				88DFD877277FFEF80080753C /* DetailPostView */,
-				881B48702783F85000DE1031 /* ChangePassword */,
 			);
 			path = 2021LastProject;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				887CD4FC277EA84800709682 /* UserData.swift in Sources */,
 				887CD502277EE15D00709682 /* LoginViewController.swift in Sources */,
 				88A36C5B277DE7BB00DB6DC4 /* SceneDelegate.swift in Sources */,
+				88CA96C1278A9CED00155F66 /* ChangePasswordError.swift in Sources */,
 				88DFD879277FFF080080753C /* DetailPostViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

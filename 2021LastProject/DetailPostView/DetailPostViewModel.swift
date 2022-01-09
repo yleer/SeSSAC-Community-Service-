@@ -14,61 +14,107 @@ class DetailPostViewModel {
     var comments: Comments = []
     
     
-    func writeComment(comment: String, id: Int, completion: @escaping (Comment) -> Void) {
+    func writeComment(comment: String, id: Int, completion: @escaping (Comment?, String, Int?) -> Void) {
         if let token = UserDefaults.standard.string(forKey: "token") {
             ApiService.writeComment(token: token, comment: comment, postId: id) { error in
                 if let error = error {
-                    print("comment not created", error)
+                    switch error {
+                    case .invalidResponse:
+                        completion(nil, "Invalid Data", nil)
+                    case .noData:
+                        completion(nil, "No data", nil)
+                    case .failed:
+                        completion(nil, "failed", nil)
+                    case .invalidData(let code):
+                        completion(nil, "invalid data", code)
+                    case .invalidStatusCode(let code, let errorContent):
+                        completion(nil, errorContent, code)
+                    }
                     return
                 }
             }
         }
     }
     
-    func deletePost(id: Int, completion: @escaping () -> Void){
+    func deletePost(id: Int, completion: @escaping (Bool, String, Int?) -> Void){
         if let token = UserDefaults.standard.string(forKey: "token") {
             ApiService.deletePost(token: token, postId: id) { error in
                 if let error = error {
-                    print("comment not created", error)
+                    switch error {
+                    case .invalidResponse:
+                        completion(false,"Invalid Data", nil)
+                    case .noData:
+                        completion(false,"No data", nil)
+                    case .failed:
+                        completion(false,"failed", nil)
+                    case .invalidData(let code):
+                        completion(false,"invalid data", code)
+                    case .invalidStatusCode(let code, let errorContent):
+                        completion(false,errorContent, code)
+                    }
                     return
                 }
                 DispatchQueue.main.async {
-                    completion()
+                    completion(true,"success" , nil)
                 }
             }
         }
     }
     
-    func deleteComment(id: Int, completion: @escaping (_ result: Bool) -> Void){
+    func deleteComment(id: Int, completion: @escaping (Bool, String, Int?) -> Void){
         if let token = UserDefaults.standard.string(forKey: "token") {
             DispatchQueue.main.async {
                 ApiService.deleteComment(token: token, commentId: id) { error in
                     if let error = error {
-                        print(error)
-                        completion(false)
+                        switch error {
+                        case .invalidResponse:
+                            completion(false,"Invalid Data", nil)
+                        case .noData:
+                            completion(false,"No data", nil)
+                        case .failed:
+                            completion(false,"failed", nil)
+                        case .invalidData(let code):
+                            completion(false,"invalid data", code)
+                        case .invalidStatusCode(let code, let errorContent):
+                            completion(false,errorContent, code)
+                        }
                         return
                     }
-                    completion(true)
+                    completion(true, "Success", nil)
                 }
             }
             
         }
     }
     
-    func viewComments(id: Int, compeltion: @escaping (_ comments: Comments) -> Void) {
+    func viewComments(id: Int, compeltion: @escaping (Comments?, String, Int?) -> Void) {
         if let token = UserDefaults.standard.string(forKey: "token") {
             ApiService.viewComment(token: token, postId: id) { comments2, error in
                 if let error = error {
-                    print("comment not created", error)
+                    switch error {
+                    case .invalidResponse:
+                        compeltion(nil,"Invalid Data", nil)
+                    case .noData:
+                        compeltion(nil,"No data", nil)
+                    case .failed:
+                        compeltion(nil,"failed", nil)
+                    case .invalidData(let code):
+                        compeltion(nil,"invalid data", code)
+                    case .invalidStatusCode(let code, let errorContent):
+                        compeltion(nil,errorContent, code)
+                    }
                     return
                 }
                 self.comments = comments2!
                 DispatchQueue.main.async {
-                    compeltion(comments2!)
+                    compeltion(comments2!, "Success", nil)
                 }
             }
         }
     }
+    
+    
+    
     
     func numberOfRowsInSection( numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
