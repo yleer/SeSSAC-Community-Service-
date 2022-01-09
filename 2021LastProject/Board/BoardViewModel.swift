@@ -50,20 +50,24 @@ class BoardViewModel {
     
     func cellForRowAt(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BoardCell", for: indexPath) as? BoardCell else { return UITableViewCell()
-            
         }
         
-        let date = posters[indexPath.row].createdAt
-        let index = date.firstIndex(of: "T")!
-        cell.writer.text = posters[indexPath.row].user.username
-        cell.content.text = posters[indexPath.row].text
-        cell.date.text = "\(date[..<index])"
-        cell.commentLabel.text = "댓글 \(posters[indexPath.row].comments.count)"
-        return cell
+        if posters.count > 0 {
+            let date = posters[indexPath.row].createdAt
+            let index = date.firstIndex(of: "T")!
+            cell.writer.text = posters[indexPath.row].user.username
+            cell.content.text = posters[indexPath.row].text
+            cell.date.text = "\(date[..<index])"
+            cell.commentLabel.text = "댓글 \(posters[indexPath.row].comments.count)"
+            return cell
+
+        }else{
+            return UITableViewCell()
+        }
+
     }
     
     func didSelectRowAt(didSelectRowAt indexPath: IndexPath) -> PosterElement {
         return posters[indexPath.row]
     }
-        
 }

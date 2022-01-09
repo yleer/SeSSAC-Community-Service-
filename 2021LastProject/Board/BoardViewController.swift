@@ -54,21 +54,55 @@ class BoardViewController: UIViewController {
     }
 
     func getPosters(refrsh: Bool = false) {
-        viewModel.getPoster(start: start, limit: limit, refresh: refrsh) { message, code in
-            if message == nil && code == nil{
-                DispatchQueue.main.async {
-                    self.mainView.tableView.reloadData()
+        
+        if refrsh {
+            viewModel.getPoster(start: start, limit: limit, refresh: true) { message, code in
+                if message == nil && code == nil{
+                    DispatchQueue.main.async {
+                        self.mainView.tableView.reloadData()
+                    }
+                }else{
+                    guard let code = code else {
+                        self.view.makeToast(message)
+                        return
+                    }
+                    if code == 401 {
+                        self.tokenExpired()
+                    }
                 }
-            }else{
-                guard let code = code else {
-                    self.view.makeToast(message)
-                    return
-                }
-                if code == 401 {
-                    self.tokenExpired()
+            }
+        }else {
+            viewModel.getPoster(start: start, limit: limit, refresh: false) { message, code in
+                if message == nil && code == nil{
+                    DispatchQueue.main.async {
+                        self.mainView.tableView.reloadData()
+                    }
+                }else{
+                    guard let code = code else {
+                        self.view.makeToast(message)
+                        return
+                    }
+                    if code == 401 {
+                        self.tokenExpired()
+                    }
                 }
             }
         }
+//        viewModel.getPoster(start: start, limit: limit, refresh: refrsh) { message, code in
+//            if message == nil && code == nil{
+//                DispatchQueue.main.async {
+//                    self.mainView.tableView.reloadData()
+//                }
+//            }else{
+//                guard let code = code else {
+//                    self.view.makeToast(message)
+//                    return
+//                }
+//                if code == 401 {
+//                    self.tokenExpired()
+//                }
+//            }
+//        }
     }
     
     @objc func segueToChangePasswordVC() {
@@ -78,7 +112,10 @@ class BoardViewController: UIViewController {
     
     @objc func refreshData(){
         start = 0
+        let indexPath = IndexPath(row: 0, section: 0)
+        mainView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         getPosters(refrsh: true)
+        
     }
     
     @objc func addPostButtonClicked() {
@@ -116,12 +153,10 @@ extension BoardViewController: UITableViewDataSourcePrefetching {
             if viewModel.posters.count - 2 == indexPath.row{
                 start += limit
                 getPosters()
-                print("fehcing", indexPaths)
+//                print("fehcing", indexPaths)
             }
         }
     }
-
-
     // 사용자가 스크롤 빨리 해서 데이터 필요 없으면 다운 취소
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         print("취소\(indexPaths)")

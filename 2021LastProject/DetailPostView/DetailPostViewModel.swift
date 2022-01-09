@@ -32,6 +32,7 @@ class DetailPostViewModel {
                     }
                     return
                 }
+                completion(Comment(id: 2, comment: "sdfg", user: 2, post: 2, createdAt: "gfd", updatedAt: "SDgf"), "success", nil)
             }
         }
     }

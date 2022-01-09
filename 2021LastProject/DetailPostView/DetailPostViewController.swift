@@ -67,7 +67,7 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     func setUp() {
         let doneButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         doneButton.backgroundColor = .gray
-        doneButton.setTitle("hh", for: .normal)
+        doneButton.setTitle("작성", for: .normal)
         commentTextField.rightView = doneButton
         commentTextField.rightViewMode = .always
         
@@ -127,9 +127,16 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     
     @objc func createComment() {
         if let text = commentTextField.text, text.count > 0 {
+            print("asdf")
             viewModel.writeComment(comment: text, id: poster!.id) { comment, message, code  in
                 if let _ = comment{
                     self.view.makeToast(message + "성공")
+                    self.loadComemnts()
+                    self.commentTextField.text = ""
+                    if self.comments.count != 0 {
+                        let indexPath = IndexPath(row: self.comments.count - 1, section: 1)
+                        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                    }
                 }else {
                     if let code = code {
                         if code == 401{
@@ -140,12 +147,6 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
                     }
                 }
             }
-            if comments.count != 0 {
-                let indexPath = IndexPath(row: comments.count - 1, section: 1)
-                tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            }
-            loadComemnts()
-            commentTextField.text = ""
         }else{
             self.view.makeToast("글자를 입력해 주세요.")
         }
