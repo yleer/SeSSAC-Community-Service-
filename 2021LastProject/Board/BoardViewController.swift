@@ -79,8 +79,8 @@ class BoardViewController: UIViewController {
     @objc func refreshData(){
         start = 0
         getPosters(refrsh: true)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        mainView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        let indexPath = IndexPath(row: 0, section: 0)
+        mainView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     @objc func addPostButtonClicked() {
@@ -116,17 +116,15 @@ extension BoardViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             
-            if viewModel.posters.count - 3 == indexPath.row {
+            if viewModel.posters.count - 2 == indexPath.row {
                 print(viewModel.posters.count, indexPath.row)
                 start += limit
                 getPosters()
-//                print("fehcing", indexPaths)
             }
         }
     }
     // 사용자가 스크롤 빨리 해서 데이터 필요 없으면 다운 취소
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-//        print("취소\(indexPaths)")
     }
 }
 
