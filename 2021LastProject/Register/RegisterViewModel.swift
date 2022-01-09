@@ -31,7 +31,6 @@ class RegisterViewModel {
                     case .invalidStatusCode(_,  _):
                         completion("Invalid Status code")
                     }
-                    
                 }else{
                     print("success")
                     UserDefaults.standard.set(user!.jwt, forKey: "token")

@@ -47,7 +47,6 @@ class ChangePasswordViewController: UIViewController {
 
     @objc func changePasswordButtonClicked() {
         viewModel.changePassword { result, message, code in
-            
             if let code = code {
                 if code == 401 {
                     self.view.makeToast(message + "다시 로그인 해주세요.")
@@ -67,8 +66,6 @@ class ChangePasswordViewController: UIViewController {
             }else{
                 self.view.makeToast(message)
             }
-            
-            
         }
     }
     

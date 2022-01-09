@@ -155,11 +155,8 @@ class AddPosterViewController: UIViewController {
                         }
                     }
                 }
-               
             } 
-            
-            
-            
+
         }
     }
 }

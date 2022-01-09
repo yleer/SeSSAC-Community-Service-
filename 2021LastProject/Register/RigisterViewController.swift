@@ -88,27 +88,7 @@ class RigisterViewController: UIViewController {
             windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: BoardViewController())
             windowScene.windows.first?.makeKeyAndVisible()
         }
-        
-        
-        
-        
-        
-        
-//        if let error = viewModel.register(){
-//            switch error {
-//            case .notEmailFormat:
-//                self.view.makeToast("이메일 형식을 작성해 주세요.")
-//            case .nickNameShort:
-//                self.view.makeToast("닉네임은 5글자 이상이여야 합니다.")
-//            case .passwordMismatch:
-//                self.view.makeToast("비밀번호가 다릅니다. 확인해주세요.")
-//            }
-//        }else{
-// guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-        
-//        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: BoardViewController())
-//        windowScene.windows.first?.makeKeyAndVisible()
-//        }
+
     }
     
 }

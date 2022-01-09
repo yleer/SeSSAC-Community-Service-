@@ -215,10 +215,10 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
 //                                }
 //                            }
                             self.loadComemnts()
-                            self.view.makeToast("댓글이 삭제되었습니다..")
+                            self.view.makeToast(message)
                             
                         }else{
-                            self.view.makeToast("작성자가 아니면 댓글 삭제가 불가능합니다.")
+                            self.view.makeToast(message)
                         }
                     }
                     

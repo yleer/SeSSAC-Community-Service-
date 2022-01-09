@@ -23,7 +23,7 @@ class BoardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getPosters(refrsh: false)
+        getPosters(refrsh: true)
     }
     
     override func viewDidLoad() {
@@ -54,55 +54,21 @@ class BoardViewController: UIViewController {
     }
 
     func getPosters(refrsh: Bool = false) {
-        
-        if refrsh {
-            viewModel.getPoster(start: start, limit: limit, refresh: true) { message, code in
-                if message == nil && code == nil{
-                    DispatchQueue.main.async {
-                        self.mainView.tableView.reloadData()
-                    }
-                }else{
-                    guard let code = code else {
-                        self.view.makeToast(message)
-                        return
-                    }
-                    if code == 401 {
-                        self.tokenExpired()
-                    }
+        viewModel.getPoster(start: start, limit: limit, refresh: refrsh) { message, code in
+            if message == nil && code == nil{
+                DispatchQueue.main.async {
+                    self.mainView.tableView.reloadData()
                 }
-            }
-        }else {
-            viewModel.getPoster(start: start, limit: limit, refresh: false) { message, code in
-                if message == nil && code == nil{
-                    DispatchQueue.main.async {
-                        self.mainView.tableView.reloadData()
-                    }
-                }else{
-                    guard let code = code else {
-                        self.view.makeToast(message)
-                        return
-                    }
-                    if code == 401 {
-                        self.tokenExpired()
-                    }
+            }else{
+                guard let code = code else {
+                    self.view.makeToast(message)
+                    return
+                }
+                if code == 401 {
+                    self.tokenExpired()
                 }
             }
         }
-//        viewModel.getPoster(start: start, limit: limit, refresh: refrsh) { message, code in
-//            if message == nil && code == nil{
-//                DispatchQueue.main.async {
-//                    self.mainView.tableView.reloadData()
-//                }
-//            }else{
-//                guard let code = code else {
-//                    self.view.makeToast(message)
-//                    return
-//                }
-//                if code == 401 {
-//                    self.tokenExpired()
-//                }
-//            }
-//        }
     }
     
     @objc func segueToChangePasswordVC() {
@@ -112,10 +78,9 @@ class BoardViewController: UIViewController {
     
     @objc func refreshData(){
         start = 0
-        let indexPath = IndexPath(row: 0, section: 0)
-        mainView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         getPosters(refrsh: true)
-        
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        mainView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     @objc func addPostButtonClicked() {
@@ -150,7 +115,9 @@ extension BoardViewController: UITableViewDelegate, UITableViewDataSource {
 extension BoardViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if viewModel.posters.count - 2 == indexPath.row{
+            
+            if viewModel.posters.count - 3 == indexPath.row {
+                print(viewModel.posters.count, indexPath.row)
                 start += limit
                 getPosters()
 //                print("fehcing", indexPaths)
@@ -159,7 +126,7 @@ extension BoardViewController: UITableViewDataSourcePrefetching {
     }
     // 사용자가 스크롤 빨리 해서 데이터 필요 없으면 다운 취소
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        print("취소\(indexPaths)")
+//        print("취소\(indexPaths)")
     }
 }
 

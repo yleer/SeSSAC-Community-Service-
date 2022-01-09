@@ -29,7 +29,7 @@ class AddPosterViewModel {
                         }
                         return
                     }
-                    completion(true, "Post Success",nil)
+                    completion(true, "Success",nil)
                 }
                 
             }

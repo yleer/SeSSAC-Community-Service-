@@ -14,7 +14,6 @@ class LoginViewModel {
     func login(completion: @escaping (User?, String) -> Void) {
         ApiService.login(id: id.value, password: pssword.value) { user, error in
             if let error = error {
-                
                 switch error {
                 case .invalidResponse:
                     completion(nil, "Invalid Resopose")
@@ -28,12 +27,11 @@ class LoginViewModel {
                     completion(nil, errorContent)
                 }
             }else{
-                print(user!)
+                completion(user!, "Login Success")
                 UserDefaults.standard.set(user!.jwt, forKey: "token")
                 UserDefaults.standard.set(user!.user.username, forKey: "userName")
                 UserDefaults.standard.set(user!.user.id, forKey: "id")
                 UserDefaults.standard.set(user!.user.email, forKey: "email")
-                completion(user!, "Login Success")
             }
         }
     }
