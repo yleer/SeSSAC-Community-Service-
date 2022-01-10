@@ -17,7 +17,7 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadComemnts()
+        loadComemnts(completion: nil)
     }
     
     
@@ -44,13 +44,14 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
         }
     }
     
-    func loadComemnts() {
+    func loadComemnts(completion: (() -> Void)?) {
         viewModel.viewComments(id: poster!.id) { comment, message, code in
             DispatchQueue.main.async {
                 if let comment = comment {
                     self.comments = comment
                     self.tableView.reloadData()
-          
+                    completion?()
+    
                 }else {
                     if let code = code {
                         if code == 401{
@@ -91,7 +92,7 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadComemnts()
+        loadComemnts(completion: nil)
         tableView.rowHeight = UITableView.automaticDimension
         setUp()
     }
@@ -143,12 +144,14 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
             viewModel.writeComment(comment: text, id: poster!.id) { comment, message, code  in
                 if let _ = comment{
                     self.view.makeToast(message + "성공")
-                    self.loadComemnts()
                     self.commentTextField.text = ""
-                    if self.comments.count != 0 {
+                    
+                    self.loadComemnts(completion: {
                         let indexPath = IndexPath(row: self.comments.count - 1, section: 1)
                         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                    }
+                        print(indexPath.row, self.comments.count)
+                    })
+                    
                 }else {
                     if let code = code {
                         if code == 401{
@@ -225,7 +228,7 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
 //                                    self.comments = comment
 //                                }
 //                            }
-                            self.loadComemnts()
+                            self.loadComemnts(completion: nil)
                             self.view.makeToast(message)
                             
                         }else{
