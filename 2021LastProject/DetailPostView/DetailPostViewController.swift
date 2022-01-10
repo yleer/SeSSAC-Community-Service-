@@ -64,13 +64,26 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
         }
     }
     
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        bottomConstraint.constant = 0
+        
+        self.view.endEditing(true)
+        return true
+    }
+
+
+
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     func setUp() {
         let doneButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         doneButton.backgroundColor = .gray
         doneButton.setTitle("작성", for: .normal)
         commentTextField.rightView = doneButton
         commentTextField.rightViewMode = .always
-        
+
+
         navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPost))
         
         doneButton.addTarget(self, action: #selector(createComment), for: .touchUpInside)
@@ -127,7 +140,6 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
     
     @objc func createComment() {
         if let text = commentTextField.text, text.count > 0 {
-            print("asdf")
             viewModel.writeComment(comment: text, id: poster!.id) { comment, message, code  in
                 if let _ = comment{
                     self.view.makeToast(message + "성공")
@@ -150,11 +162,10 @@ class DetailPostViewController: UIViewController, PassPosterDataDelegate {
         }else{
             self.view.makeToast("글자를 입력해 주세요.")
         }
-        
+        view.endEditing(true)
+        view.layoutSubviews()
     }
 }
-
-
 
 extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

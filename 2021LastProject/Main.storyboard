@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RLf-T9-iJ9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="784"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="779"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailCommentTableViewCell" rowHeight="232" id="eay-v3-4B3" customClass="DetailCommentTableViewCell" customModule="_021LastProject" customModuleProvider="target">
@@ -176,13 +176,14 @@
                             <constraint firstItem="RLf-T9-iJ9" firstAttribute="top" secondItem="T8W-6w-siY" secondAttribute="top" id="07G-Sk-hd1"/>
                             <constraint firstItem="T8W-6w-siY" firstAttribute="trailing" secondItem="pRi-b0-fs9" secondAttribute="trailing" id="3mf-zk-GNm"/>
                             <constraint firstItem="pRi-b0-fs9" firstAttribute="leading" secondItem="T8W-6w-siY" secondAttribute="leading" id="DLB-ut-eTN"/>
-                            <constraint firstItem="pRi-b0-fs9" firstAttribute="top" secondItem="RLf-T9-iJ9" secondAttribute="bottom" id="HQB-hq-RkT"/>
+                            <constraint firstItem="pRi-b0-fs9" firstAttribute="top" secondItem="RLf-T9-iJ9" secondAttribute="bottom" constant="5" id="HQB-hq-RkT"/>
                             <constraint firstItem="T8W-6w-siY" firstAttribute="trailing" secondItem="RLf-T9-iJ9" secondAttribute="trailing" id="div-Ph-OsH"/>
                             <constraint firstItem="RLf-T9-iJ9" firstAttribute="leading" secondItem="T8W-6w-siY" secondAttribute="leading" id="jef-Nb-nER"/>
                             <constraint firstItem="T8W-6w-siY" firstAttribute="bottom" secondItem="pRi-b0-fs9" secondAttribute="bottom" id="mV7-D6-9oi"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="mV7-D6-9oi" id="JgR-2E-Qhb"/>
                         <outlet property="commentTextField" destination="pRi-b0-fs9" id="Ql9-tf-6kg"/>
                         <outlet property="tableView" destination="RLf-T9-iJ9" id="56L-Je-fLw"/>
                     </connections>
