@@ -61,45 +61,35 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bU2-LL-dtu">
-                                                    <rect key="frame" x="25" y="135.5" width="364" height="1"/>
-                                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                                    <rect key="frame" x="22" y="135.5" width="372" height="1"/>
+                                                    <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="5Pe-Gt-l1L"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-4F-UsS">
-                                                    <rect key="frame" x="15" y="156.5" width="379" height="23.5"/>
+                                                    <rect key="frame" x="15" y="156.5" width="379" height="55.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfU-yx-hMH">
-                                                    <rect key="frame" x="25" y="200" width="364" height="1"/>
-                                                    <color key="backgroundColor" systemColor="separatorColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="gTq-X6-i0o"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="7Y2-4F-UsS" secondAttribute="trailing" constant="20" id="2JV-si-Kqs"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bU2-LL-dtu" secondAttribute="trailing" constant="5" id="7u6-r9-HeO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bU2-LL-dtu" secondAttribute="trailing" id="7u6-r9-HeO"/>
                                                 <constraint firstItem="XBH-JS-etE" firstAttribute="leading" secondItem="4Vc-Ie-26E" secondAttribute="trailing" constant="8" id="DCt-DJ-RKs"/>
                                                 <constraint firstItem="7Y2-4F-UsS" firstAttribute="top" secondItem="bU2-LL-dtu" secondAttribute="bottom" constant="20" id="HmO-g0-ob8"/>
-                                                <constraint firstItem="wfU-yx-hMH" firstAttribute="leading" secondItem="yzf-Ed-0Dr" secondAttribute="leadingMargin" constant="5" id="IcM-ad-Zdw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="XBH-JS-etE" secondAttribute="trailing" constant="20" id="Pcl-zh-dQi"/>
                                                 <constraint firstItem="AqG-SZ-BeB" firstAttribute="leading" secondItem="yzf-Ed-0Dr" secondAttribute="leadingMargin" constant="10" id="QMb-9t-thW"/>
                                                 <constraint firstItem="AqG-SZ-BeB" firstAttribute="top" secondItem="XBH-JS-etE" secondAttribute="bottom" constant="30" id="Qub-Cz-poe"/>
                                                 <constraint firstItem="XBH-JS-etE" firstAttribute="top" secondItem="4Vc-Ie-26E" secondAttribute="top" id="Wer-6s-Kwv"/>
-                                                <constraint firstItem="wfU-yx-hMH" firstAttribute="top" secondItem="7Y2-4F-UsS" secondAttribute="bottom" constant="20" id="Zd8-Ep-o59"/>
                                                 <constraint firstItem="4Vc-Ie-26E" firstAttribute="top" secondItem="yzf-Ed-0Dr" secondAttribute="top" constant="15" id="e4U-gc-Ryc"/>
                                                 <constraint firstItem="4Vc-Ie-26E" firstAttribute="leading" secondItem="yzf-Ed-0Dr" secondAttribute="leading" constant="15" id="j4p-ph-Z2J"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="AqG-SZ-BeB" secondAttribute="trailing" constant="20" id="mYX-pQ-bj4"/>
-                                                <constraint firstItem="bU2-LL-dtu" firstAttribute="leading" secondItem="yzf-Ed-0Dr" secondAttribute="leadingMargin" constant="5" id="qL9-2v-AOd"/>
+                                                <constraint firstItem="bU2-LL-dtu" firstAttribute="leading" secondItem="yzf-Ed-0Dr" secondAttribute="leadingMargin" constant="2" id="qL9-2v-AOd"/>
                                                 <constraint firstItem="7Y2-4F-UsS" firstAttribute="leading" secondItem="4Vc-Ie-26E" secondAttribute="leading" id="qZe-Y2-20N"/>
                                                 <constraint firstItem="bU2-LL-dtu" firstAttribute="top" secondItem="AqG-SZ-BeB" secondAttribute="bottom" constant="30" id="ruG-eM-Tdb"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="wfU-yx-hMH" secondAttribute="bottom" constant="20" id="s8u-AU-oiT"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wfU-yx-hMH" secondAttribute="trailing" constant="5" id="zXI-Ai-AfB"/>
+                                                <constraint firstAttribute="bottom" secondItem="7Y2-4F-UsS" secondAttribute="bottom" constant="20" id="s5i-Ok-JYu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,7 +97,6 @@
                                             <outlet property="contentLabel" destination="AqG-SZ-BeB" id="GAo-7t-FFU"/>
                                             <outlet property="dateLabel" destination="EV9-4E-g5n" id="Hk8-td-3lB"/>
                                             <outlet property="divider" destination="bU2-LL-dtu" id="lOs-vb-blH"/>
-                                            <outlet property="lastDivider" destination="wfU-yx-hMH" id="e1Z-oP-hwS"/>
                                             <outlet property="numberOfCommentLabel" destination="7Y2-4F-UsS" id="ILr-MT-NBN"/>
                                             <outlet property="userImageView" destination="4Vc-Ie-26E" id="VbK-H0-emL"/>
                                             <outlet property="userNickName" destination="AkJ-FK-iHd" id="RzE-bG-LdR"/>
@@ -134,9 +123,9 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfO-nK-bwi">
                                                     <rect key="frame" x="369" y="58.5" width="25" height="31"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="hurricane" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system"/>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -195,9 +184,9 @@
     </scenes>
     <resources>
         <image name="11" width="1000" height="1080"/>
-        <image name="hurricane" catalog="system" width="91" height="128"/>
-        <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

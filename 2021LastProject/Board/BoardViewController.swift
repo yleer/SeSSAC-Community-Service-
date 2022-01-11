@@ -39,9 +39,10 @@ class BoardViewController: UIViewController {
         mainView.tableView.register(BoardCell.self, forCellReuseIdentifier: "BoardCell")
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData)),
-            UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(segueToChangePasswordVC))
+            UIBarButtonItem(title: "비밀번호 변경", style: .plain, target: self, action: #selector(segueToChangePasswordVC))
         ]
         mainView.addPostButton.addTarget(self, action: #selector(addPostButtonClicked), for: .touchUpInside)
+        title = "새싹 게시판"
     }
     
     func tokenExpired() {

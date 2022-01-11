@@ -71,15 +71,15 @@ class RigisterViewController: UIViewController {
     @objc func registerButtonClicked () {
         
         if let error = viewModel.register(completion: { errorText in
-            self.view.makeToast(errorText)
+            self.customAlert(message: errorText)
         }){
             switch error {
             case .notEmailFormat:
-                self.view.makeToast("이메일 형식을 작성해 주세요.")
+                customAlert(message: "이메일 형식을 작성해 주세요.")
             case .nickNameShort:
-                self.view.makeToast("닉네임은 5글자 이상이여야 합니다.")
+                customAlert(message: "닉네임은 5글자 이상이여야 합니다.")
             case .passwordMismatch:
-                self.view.makeToast("비밀번호가 다릅니다. 확인해주세요.")
+                customAlert(message: "비밀번호가 다릅니다. 확인해주세요.")
             }
         }else{
             // 회원가입 성공 -> 화면 전환 해야됨.
@@ -91,4 +91,13 @@ class RigisterViewController: UIViewController {
 
     }
     
+}
+
+extension RigisterViewController {
+    func customAlert(message: String) {
+        let alertVC = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        alertVC.addAction(cancelButton)
+        present(alertVC, animated: true, completion: nil)
+    }
 }

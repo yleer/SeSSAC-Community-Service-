@@ -29,9 +29,10 @@ class BoardView: UIView, ViewRepresentable {
         backgroundColor = .white
         addSubview(tableView)
         addSubview(addPostButton)
-        addPostButton.setTitle("+", for: .normal)
+//        addPostButton.setTitle("+", for: .normal)
+        addPostButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addPostButton.backgroundColor = .green
-        addPostButton.layer.cornerRadius = 15
+        addPostButton.layer.cornerRadius = 25
     }
     
     func setUpConstraints() {

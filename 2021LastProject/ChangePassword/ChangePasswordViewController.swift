@@ -49,22 +49,25 @@ class ChangePasswordViewController: UIViewController {
         viewModel.changePassword { result, message, code in
             if let code = code {
                 if code == 401 {
-                    self.view.makeToast(message + "다시 로그인 해주세요.")
-                    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.7) {
-                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                        windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: WelcomeViewContoller())
-                        windowScene.windows.first?.makeKeyAndVisible()
-                        return
+                    self.customAlert(message: message + "다시 로그인 해주세요.") { _ in
+                        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.3) {
+                            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                            windowScene.windows.first?.rootViewController = UINavigationController(rootViewController: WelcomeViewContoller())
+                            windowScene.windows.first?.makeKeyAndVisible()
+                            return
+                        }
                     }
                 }
             }
             if result {
-                self.view.makeToast(message)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    self.navigationController?.popViewController(animated: true)
+                self.customAlert(message: message) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
+                
             }else{
-                self.view.makeToast(message)
+                self.customAlert(message: message, completion: nil)
             }
         }
     }
@@ -81,7 +84,14 @@ class ChangePasswordViewController: UIViewController {
     @objc func checkPasswordChange(_ textField: UITextField) {
         viewModel.chekcPassword.value = textField.text ?? ""
     }
-    
-    
-   
 }
+
+extension ChangePasswordViewController {
+    func customAlert(message: String, completion: ((UIAlertAction)-> Void)? ) {
+        let alertVC = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: completion)
+        alertVC.addAction(cancelButton)
+        present(alertVC, animated: true, completion: nil)
+    }
+}
+
